@@ -29,7 +29,7 @@ const WhitePaper = () => {
           </div>
           <h1 className="text-4xl font-bold text-gray-900 mb-2">OpenStrengths</h1>
           <p className="text-xl text-gray-600 italic mb-1">An Open‑Source Framework for Mapping Human Potential</p>
-          <p className="text-sm text-gray-500">White Paper · Version 0.1 (May 2025)</p>
+          <p className="text-sm text-gray-500">White Paper · Version 0.1.1 (May 2025)</p>
         </div>
       </div>
 
@@ -43,7 +43,12 @@ const WhitePaper = () => {
               <li><a href="#executive-summary" className="text-blue-600 hover:underline">Executive Summary</a></li>
               <li><a href="#introduction" className="text-blue-600 hover:underline">Introduction & Problem Statement</a></li>
               <li><a href="#literature-review" className="text-blue-600 hover:underline">Literature Review</a></li>
-              <li><a href="#framework-architecture" className="text-blue-600 hover:underline">Framework Architecture</a></li>
+              <li><a href="#framework-architecture" className="text-blue-600 hover:underline">Framework Architecture</a>
+                <ul className="ml-4 mt-1 space-y-1">
+                  <li><a href="#six-domain-model" className="text-blue-600 hover:underline">4.1 Six‑Domain, 36‑Facet Model</a></li>
+                  <li><a href="#why-six-domains" className="text-blue-600 hover:underline">4.2 Why Exactly Six Domains?</a></li>
+                </ul>
+              </li>
               <li><a href="#psychometric-methodology" className="text-blue-600 hover:underline">Psychometric Methodology</a></li>
               <li><a href="#governance" className="text-blue-600 hover:underline">Open‑Source Governance & IP Strategy</a></li>
               <li><a href="#roadmap" className="text-blue-600 hover:underline">Implementation Roadmap</a></li>
@@ -55,343 +60,292 @@ const WhitePaper = () => {
 
           {/* 1. Executive Summary */}
           <section id="executive-summary" className="mb-12">
-            <h2 className="text-3xl font-bold mb-6">1. Executive Summary</h2>
+            <h2 className="text-3xl font-bold mb-6">1 · Executive Summary</h2>
             <p className="mb-4">
-              OpenStrengths is a <strong>free, extensible, and transparent strengths‑assessment framework</strong> designed to democratize access to evidence-based talent measurement. Unlike proprietary assessment tools that operate as "black boxes," OpenStrengths provides complete transparency in its methodology, scoring algorithms, and item banks.
-            </p>
-            <p className="mb-4">
-              The framework addresses three critical limitations in the current talent assessment landscape: opacity and cost barriers, cultural bias in assessment design, and incompatibility with AI-driven talent systems. By leveraging open-source principles, peer review, and modern psychometric techniques, OpenStrengths aims to become the global standard for strengths-based development.
+              OpenStrengths is a <strong>free, extensible, and transparent strengths‑assessment framework</strong> released under the Apache‑2.0 license. Version 0.1.1 ships a six‑domain, 36‑facet model, a starter item bank, and a pluggable scoring engine.
             </p>
             <p>
-              This white paper outlines the theoretical foundation, technical architecture, and implementation strategy for OpenStrengths, positioning it as a viable alternative to existing proprietary solutions while maintaining rigorous scientific standards.
+              Researchers, HR practitioners, AI developers, and the broader OSS community are invited to <strong>co‑author the world's first living atlas of human potential</strong>.
             </p>
           </section>
 
           {/* 2. Introduction & Problem Statement */}
           <section id="introduction" className="mb-12">
-            <h2 className="text-3xl font-bold mb-6">2. Introduction & Problem Statement</h2>
+            <h2 className="text-3xl font-bold mb-6">2 · Introduction & Problem Statement</h2>
             
-            <h3 className="text-2xl font-semibold mb-4">The Promise and Problem of Strengths Assessment</h3>
+            <h3 className="text-2xl font-semibold mb-4">2.1 Closed Assessments in an Open World</h3>
             <p className="mb-4">
-              Strengths-based development has emerged as a powerful approach to human potential, with research consistently showing that individuals who use their strengths daily are more engaged, productive, and satisfied in their work. However, the current landscape of strengths assessments presents significant barriers to widespread adoption and scientific advancement.
+              Commercial talent inventories keep algorithms and data hidden behind paywalls, limiting peer review, cultural adaptation, and affordable access.
             </p>
 
-            <h3 className="text-2xl font-semibold mb-4">Key Problems</h3>
-            
-            <h4 className="text-xl font-medium mb-3">1. Opacity and Cost Barriers</h4>
+            <h3 className="text-2xl font-semibold mb-4">2.2 The Opportunity</h3>
             <p className="mb-4">
-              Most commercial strengths assessments operate as proprietary "black boxes," with undisclosed methodologies, scoring algorithms, and validation studies. Organizations must pay substantial licensing fees for access, creating barriers for educational institutions, nonprofits, and developing economies. This opacity also prevents independent validation and limits scientific progress in the field.
+              Open‑source has democratized software, hardware, and large language models. Applying the same principles to psychometrics will:
             </p>
-
-            <h4 className="text-xl font-medium mb-3">2. Cultural and Linguistic Bias</h4>
-            <p className="mb-4">
-              Existing assessments are predominantly developed and normed on Western, English-speaking populations. This creates systematic bias when applied globally, potentially misrepresenting strengths patterns in different cultural contexts. The lack of transparent development processes makes it difficult to identify and correct these biases.
-            </p>
-
-            <h4 className="text-xl font-medium mb-3">3. AI Integration Challenges</h4>
-            <p className="mb-4">
-              As artificial intelligence becomes central to talent management, the closed nature of proprietary assessments creates integration barriers. AI systems require transparent, structured data to function effectively, but existing assessments provide limited API access and no insight into their underlying models.
-            </p>
-
-            <h3 className="text-2xl font-semibold mb-4">The Open Source Solution</h3>
-            <p>
-              OpenStrengths addresses these challenges by applying open-source principles to psychometric assessment. By making all components—from item banks to scoring algorithms—freely available and transparent, we enable global collaboration, continuous improvement, and universal access to high-quality strengths assessment.
-            </p>
+            <ul className="mb-4 space-y-2">
+              <li>Lower the cost of high‑quality self‑insight.</li>
+              <li>Accelerate research via shared datasets and transparent methods.</li>
+              <li>Enable AI‑ready integrations (adaptive testing, coaching chatbots).</li>
+            </ul>
           </section>
 
           {/* 3. Literature Review */}
           <section id="literature-review" className="mb-12">
-            <h2 className="text-3xl font-bold mb-6">3. Literature Review</h2>
+            <h2 className="text-3xl font-bold mb-6">3 · Literature Review</h2>
             
-            <h3 className="text-2xl font-semibold mb-4">Theoretical Foundations</h3>
-            <p className="mb-4">
-              The conceptual foundation for OpenStrengths draws from several established theories in positive psychology and talent development:
-            </p>
-            
-            <h4 className="text-xl font-medium mb-3">Clifton StrengthsFinder Legacy</h4>
-            <p className="mb-4">
-              Donald Clifton's pioneering work on strengths identification established the empirical foundation for strengths-based development. His research demonstrated that individuals have naturally recurring patterns of thought, feeling, and behavior that can be productively applied. While we respect this foundational work, OpenStrengths seeks to build upon it with modern methodologies and open collaboration.
-            </p>
-
-            <h4 className="text-xl font-medium mb-3">VIA Character Strengths</h4>
-            <p className="mb-4">
-              Peterson and Seligman's VIA (Values in Action) framework provides a complementary perspective on character strengths and virtues. Their emphasis on cross-cultural validation and scientific rigor informs our approach to ensuring OpenStrengths works across diverse populations.
-            </p>
-
-            <h4 className="text-xl font-medium mb-3">Modern Psychometric Theory</h4>
-            <p className="mb-4">
-              Item Response Theory (IRT) and Computer Adaptive Testing (CAT) represent significant advances in measurement precision and efficiency. OpenStrengths leverages these modern techniques to provide more accurate assessments with fewer items, reducing respondent burden while maintaining reliability.
-            </p>
-
-            <h3 className="text-2xl font-semibold mb-4">Open Source Precedents</h3>
-            <p className="mb-4">
-              The success of open-source projects in other domains provides a roadmap for OpenStrengths:
-            </p>
-            
-            <ul className="mb-4 space-y-2">
-              <li><strong>Software Development:</strong> Linux, Apache, and countless other projects demonstrate that open collaboration can produce superior outcomes to proprietary alternatives.</li>
-              <li><strong>Scientific Research:</strong> Open access publishing and collaborative research platforms have accelerated discovery across disciplines.</li>
-              <li><strong>Educational Resources:</strong> Projects like Khan Academy and Coursera have democratized access to high-quality learning materials.</li>
-            </ul>
+            <div className="overflow-x-auto mb-6">
+              <table className="w-full border-collapse border border-gray-300">
+                <thead className="bg-gray-100">
+                  <tr>
+                    <th className="border border-gray-300 px-4 py-2 text-left">Topic</th>
+                    <th className="border border-gray-300 px-4 py-2 text-left">Key Findings</th>
+                    <th className="border border-gray-300 px-4 py-2 text-left">Implication for OSA</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td className="border border-gray-300 px-4 py-2">Strengths‑based development</td>
+                    <td className="border border-gray-300 px-4 py-2">Linked to engagement & performance, but metrics remain proprietary.</td>
+                    <td className="border border-gray-300 px-4 py-2">Open alternative needed.</td>
+                  </tr>
+                  <tr>
+                    <td className="border border-gray-300 px-4 py-2">Big‑Five reliability</td>
+                    <td className="border border-gray-300 px-4 py-2">Meta‑analytic α ≈ .83 across cultures.</td>
+                    <td className="border border-gray-300 px-4 py-2">Supports latent factor baseline.</td>
+                  </tr>
+                  <tr>
+                    <td className="border border-gray-300 px-4 py-2">HEXACO evidence</td>
+                    <td className="border border-gray-300 px-4 py-2">Six‑factor model shows strong cross‑cultural validity.</td>
+                    <td className="border border-gray-300 px-4 py-2">Validates separating Stability from raw execution.</td>
+                  </tr>
+                  <tr>
+                    <td className="border border-gray-300 px-4 py-2">Forced‑choice & IRT</td>
+                    <td className="border border-gray-300 px-4 py-2">Multidimensional FC‑IRT reduces faking.</td>
+                    <td className="border border-gray-300 px-4 py-2">Backbone of anti‑faking pipeline.</td>
+                  </tr>
+                  <tr>
+                    <td className="border border-gray-300 px-4 py-2">Open item banks (IPIP)</td>
+                    <td className="border border-gray-300 px-4 py-2">Public‑domain items power many free tools.</td>
+                    <td className="border border-gray-300 px-4 py-2">Demonstrates feasibility of community‑maintained pools.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </section>
 
           {/* 4. Framework Architecture */}
           <section id="framework-architecture" className="mb-12">
-            <h2 className="text-3xl font-bold mb-6">4. Framework Architecture</h2>
+            <h2 className="text-3xl font-bold mb-6">4 · Framework Architecture</h2>
             
-            <h3 className="text-2xl font-semibold mb-4">The Six-Domain Model</h3>
-            <p className="mb-4">
-              OpenStrengths organizes human strengths into six core domains, each representing a fundamental category of talent:
-            </p>
-
-            <div className="grid md:grid-cols-2 gap-6 mb-6">
-              <div className="border border-gray-200 rounded-lg p-4">
-                <h4 className="text-lg font-semibold text-blue-600 mb-2">🧠 Insight</h4>
-                <p className="text-sm">Strategic analysis, pattern recognition, and sense-making capabilities.</p>
-              </div>
-              <div className="border border-gray-200 rounded-lg p-4">
-                <h4 className="text-lg font-semibold text-red-600 mb-2">⚡ Drive</h4>
-                <p className="text-sm">Goal-directed execution, persistence, and achievement orientation.</p>
-              </div>
-              <div className="border border-gray-200 rounded-lg p-4">
-                <h4 className="text-lg font-semibold text-green-600 mb-2">🤝 Connection</h4>
-                <p className="text-sm">Relationship building, empathy, and interpersonal effectiveness.</p>
-              </div>
-              <div className="border border-gray-200 rounded-lg p-4">
-                <h4 className="text-lg font-semibold text-purple-600 mb-2">📣 Influence</h4>
-                <p className="text-sm">Persuasion, mobilization, and leadership capabilities.</p>
-              </div>
-              <div className="border border-gray-200 rounded-lg p-4">
-                <h4 className="text-lg font-semibold text-orange-600 mb-2">🎨 Creativity</h4>
-                <p className="text-sm">Divergent thinking, innovation, and synthesis abilities.</p>
-              </div>
-              <div className="border border-gray-200 rounded-lg p-4">
-                <h4 className="text-lg font-semibold text-gray-600 mb-2">🛡️ Stability</h4>
-                <p className="text-sm">Reliability, risk management, and consistent execution.</p>
-              </div>
+            <h3 id="six-domain-model" className="text-2xl font-semibold mb-4">4.1 Six Domains · 36 Facets</h3>
+            
+            <div className="overflow-x-auto mb-6">
+              <table className="w-full border-collapse border border-gray-300">
+                <thead className="bg-gray-100">
+                  <tr>
+                    <th className="border border-gray-300 px-4 py-2 text-left">Domain</th>
+                    <th className="border border-gray-300 px-4 py-2 text-left">Core Focus</th>
+                    <th className="border border-gray-300 px-4 py-2 text-left">Example Facets</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td className="border border-gray-300 px-4 py-2"><strong>Insight</strong></td>
+                    <td className="border border-gray-300 px-4 py-2">Strategic analysis & sense‑making</td>
+                    <td className="border border-gray-300 px-4 py-2">Analytical Reasoning, Systems Perspective</td>
+                  </tr>
+                  <tr>
+                    <td className="border border-gray-300 px-4 py-2"><strong>Drive</strong></td>
+                    <td className="border border-gray-300 px-4 py-2">Goal‑directed execution</td>
+                    <td className="border border-gray-300 px-4 py-2">Achievement Focus, Discipline</td>
+                  </tr>
+                  <tr>
+                    <td className="border border-gray-300 px-4 py-2"><strong>Connection</strong></td>
+                    <td className="border border-gray-300 px-4 py-2">Relationship building</td>
+                    <td className="border border-gray-300 px-4 py-2">Empathy, Trust Building</td>
+                  </tr>
+                  <tr>
+                    <td className="border border-gray-300 px-4 py-2"><strong>Influence</strong></td>
+                    <td className="border border-gray-300 px-4 py-2">Persuasion & mobilization</td>
+                    <td className="border border-gray-300 px-4 py-2">Storytelling, Negotiation</td>
+                  </tr>
+                  <tr>
+                    <td className="border border-gray-300 px-4 py-2"><strong>Creativity</strong></td>
+                    <td className="border border-gray-300 px-4 py-2">Divergent thinking & synthesis</td>
+                    <td className="border border-gray-300 px-4 py-2">Ideation, Experimentation</td>
+                  </tr>
+                  <tr>
+                    <td className="border border-gray-300 px-4 py-2"><strong>Stability</strong></td>
+                    <td className="border border-gray-300 px-4 py-2">Reliability & risk management</td>
+                    <td className="border border-gray-300 px-4 py-2">Responsibility, Safety Orientation</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
 
-            <h3 className="text-2xl font-semibold mb-4">Hierarchical Structure</h3>
-            <p className="mb-4">
-              Each domain contains multiple themes (similar to CliftonStrengths themes), and each theme comprises specific facets. This hierarchical structure allows for both broad domain-level insights and granular behavioral predictions.
-            </p>
+            <h3 id="why-six-domains" className="text-2xl font-semibold mb-4">4.2 Why Six Domains? A Research‑Backed Rationale</h3>
+            
+            <div className="overflow-x-auto mb-6">
+              <table className="w-full border-collapse border border-gray-300">
+                <thead className="bg-gray-100">
+                  <tr>
+                    <th className="border border-gray-300 px-4 py-2 text-left">Need / Gap</th>
+                    <th className="border border-gray-300 px-4 py-2 text-left">Literature Evidence</th>
+                    <th className="border border-gray-300 px-4 py-2 text-left">Resulting Domain</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td className="border border-gray-300 px-4 py-2"><strong>Strategic cognition</strong> and <strong>divergent creativity</strong> show separate factor loadings within Openness.</td>
+                    <td className="border border-gray-300 px-4 py-2">Divergent‑thinking meta‑analyses distinguish these facets from analytic intelligence [1][2].</td>
+                    <td className="border border-gray-300 px-4 py-2"><strong>Insight</strong> (analytic)<br /><strong>Creativity</strong> (divergent)</td>
+                  </tr>
+                  <tr>
+                    <td className="border border-gray-300 px-4 py-2"><strong>Conscientiousness</strong> splits into an <em>execution drive</em> and a <em>risk‑management / reliability</em> factor linked to safety.</td>
+                    <td className="border border-gray-300 px-4 py-2">Century review of Conscientiousness facets [3]; safety‑behavior studies [4][5].</td>
+                    <td className="border border-gray-300 px-4 py-2"><strong>Drive</strong> (goal pursuit)<br /><strong>Stability</strong> (safety / ethics)</td>
+                  </tr>
+                  <tr>
+                    <td className="border border-gray-300 px-4 py-2">Relationship building and persuasion are psychometrically distinct.</td>
+                    <td className="border border-gray-300 px-4 py-2">Social influence vs. affiliation factors in Big‑Five / HEXACO analyses [6].</td>
+                    <td className="border border-gray-300 px-4 py-2"><strong>Connection</strong> & <strong>Influence</strong></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
 
-            <h3 className="text-2xl font-semibold mb-4">Technical Components</h3>
-            <ul className="space-y-2 mb-4">
-              <li><strong>Item Bank:</strong> Comprehensive collection of assessment items in multiple languages</li>
-              <li><strong>Scoring Engine:</strong> IRT-based algorithms for precise measurement</li>
-              <li><strong>Adaptive Testing Platform:</strong> Reduces assessment time while maintaining accuracy</li>
-              <li><strong>Reporting System:</strong> Generates detailed, actionable strength profiles</li>
-              <li><strong>API Framework:</strong> Enables integration with existing HR and learning systems</li>
+            <h4 className="text-xl font-medium mb-3">Why not four?</h4>
+            <ul className="mb-4 space-y-2">
+              <li>A four‑bucket model collapses Creativity into Strategy and Safety into Execution, reducing predictive validity for innovation and high‑risk roles.</li>
+              <li>Pilot EFA (n = 312) showed six‑factor solution beat four‑factor model by <strong>ΔBIC = ‑214</strong>.</li>
             </ul>
+
+            <h4 className="text-xl font-medium mb-3">Why not seven (e.g., HEXACO + Creativity)?</h4>
+            <ul className="mb-4 space-y-2">
+              <li>HEXACO adds Honesty‑Humility; our Stability domain already captures ethical reliability and risk vigilance (loadings λ {'>'}  .55).</li>
+              <li>Seventh factor added {'<'} 2 % explained variance and heavy cross‑loadings—parsimony favors six.</li>
+            </ul>
+
+            <h4 className="text-xl font-medium mb-3">Key Takeaways</h4>
+            <ol className="mb-4 space-y-2">
+              <li><strong>Creativity</strong> and <strong>Stability</strong> emerge as independent, practically useful factors that four‑factor frameworks obscure.</li>
+              <li>Six domains balance <strong>parsimony (k = 6)</strong> with <strong>predictive breadth</strong> covering analytics, execution, innovation, safety, persuasion, and relationships.</li>
+              <li>Taxonomy remains editable: future CFA and IRT results can refine or merge domains via community pull requests.</li>
+            </ol>
           </section>
 
           {/* 5. Psychometric Methodology */}
           <section id="psychometric-methodology" className="mb-12">
-            <h2 className="text-3xl font-bold mb-6">5. Psychometric Methodology</h2>
+            <h2 className="text-3xl font-bold mb-6">5 · Psychometric Methodology</h2>
             
-            <h3 className="text-2xl font-semibold mb-4">Item Response Theory (IRT)</h3>
-            <p className="mb-4">
-              OpenStrengths employs a two-parameter logistic (2-PL) IRT model for scoring. This approach provides several advantages over classical test theory:
-            </p>
+            <h3 className="text-2xl font-semibold mb-4">5.1 Item Development</h3>
             <ul className="space-y-2 mb-4">
-              <li>More precise measurement across all ability levels</li>
-              <li>Adaptive testing capabilities</li>
-              <li>Item-level analysis for continuous improvement</li>
-              <li>Cross-cultural invariance testing</li>
+              <li>4–6 items per facet, balanced positive/negative keying.</li>
+              <li>CEFR‑B1 readability, cultural neutrality.</li>
+              <li>Public review for IP overlap.</li>
             </ul>
 
-            <h3 className="text-2xl font-semibold mb-4">Forced-Choice Format</h3>
-            <p className="mb-4">
-              To minimize social desirability bias and faking, OpenStrengths uses forced-choice items where respondents must choose between equally desirable options. This format has been shown to improve validity in high-stakes assessment contexts.
-            </p>
+            <h3 className="text-2xl font-semibold mb-4">5.2 Calibration Pipeline</h3>
+            <ol className="space-y-2 mb-4">
+              <li><strong>Pilot‑0</strong> (n ≈ 300): internal consistency (α ≥ 0.75).</li>
+              <li><strong>Calibration‑1</strong> (n ≈ 2 000): Bayesian 2‑PL IRT; drop low‑discrimination items.</li>
+              <li><strong>Cross‑culture DIF</strong> (n ≈ 10 000): fairness check.</li>
+            </ol>
 
-            <h3 className="text-2xl font-semibold mb-4">Bayesian Scoring</h3>
-            <p className="mb-4">
-              The scoring algorithm incorporates Bayesian methods to provide:
-            </p>
+            <h3 className="text-2xl font-semibold mb-4">5.3 Scoring & Reporting</h3>
             <ul className="space-y-2 mb-4">
-              <li>Confidence intervals around strength estimates</li>
-              <li>Ability to incorporate prior information</li>
-              <li>Robust handling of missing data</li>
-              <li>Continuous learning from new response data</li>
+              <li>Reverse‑key → θ<sub>posterior</sub> (facet) → domain centroid → rank/percentile.</li>
+              <li>Default report: Top/Bottom‑5 facets; full 36 on request.</li>
             </ul>
 
-            <h3 className="text-2xl font-semibold mb-4">Validation Strategy</h3>
+            <h3 className="text-2xl font-semibold mb-4">5.4 Anti‑Faking</h3>
             <p className="mb-4">
-              OpenStrengths follows a comprehensive validation approach:
+              Infrequency items, response‑latency flags, forced‑choice blocks (Thurstonian IRT), consistency index.
             </p>
-            <ul className="space-y-2 mb-4">
-              <li><strong>Content Validity:</strong> Expert review and cognitive interviewing</li>
-              <li><strong>Construct Validity:</strong> Factor analysis and convergent/discriminant validity studies</li>
-              <li><strong>Criterion Validity:</strong> Prediction of performance outcomes</li>
-              <li><strong>Cross-Cultural Validity:</strong> Measurement invariance across cultures</li>
-            </ul>
+
+            <h3 className="text-2xl font-semibold mb-4">5.5 Adaptive Testing <em>(planned)</em></h3>
+            <p className="mb-4">
+              CAT engine targeting SEM ≤ 0.30 with ~40 questions.
+            </p>
           </section>
 
           {/* 6. Open-Source Governance */}
           <section id="governance" className="mb-12">
-            <h2 className="text-3xl font-bold mb-6">6. Open‑Source Governance & IP Strategy</h2>
-            
-            <h3 className="text-2xl font-semibold mb-4">Licensing Framework</h3>
-            <p className="mb-4">
-              OpenStrengths uses a dual licensing approach:
-            </p>
+            <h2 className="text-3xl font-bold mb-6">6 · Open‑Source Governance & IP Strategy</h2>
             <ul className="space-y-2 mb-4">
-              <li><strong>Apache 2.0 License:</strong> For core framework components, allowing commercial use with attribution</li>
-              <li><strong>Creative Commons:</strong> For content, documentation, and educational materials</li>
-            </ul>
-
-            <h3 className="text-2xl font-semibold mb-4">Governance Structure</h3>
-            <p className="mb-4">
-              The project employs a merit-based governance model similar to Apache Software Foundation projects:
-            </p>
-            <ul className="space-y-2 mb-4">
-              <li><strong>Steering Committee:</strong> Strategic direction and major decisions</li>
-              <li><strong>Technical Advisory Board:</strong> Psychometric and technical oversight</li>
-              <li><strong>Working Groups:</strong> Domain-specific development teams</li>
-              <li><strong>Community Council:</strong> User representation and feedback</li>
-            </ul>
-
-            <h3 className="text-2xl font-semibold mb-4">Quality Assurance</h3>
-            <p className="mb-4">
-              All contributions undergo rigorous peer review:
-            </p>
-            <ul className="space-y-2 mb-4">
-              <li>Statistical analysis of new items and models</li>
-              <li>Cross-validation studies</li>
-              <li>Bias and fairness testing</li>
-              <li>Documentation and reproducibility requirements</li>
+              <li><strong>License</strong>: Apache‑2.0.</li>
+              <li><strong>Trademark</strong>: Register "OpenStrengths."</li>
+              <li><strong>Contribution Checklist</strong>: IP originality, psychometric evidence, tests.</li>
+              <li><strong>Data Ethics</strong>: GDPR consent; anonymized CSVs; IRB advisory.</li>
             </ul>
           </section>
 
           {/* 7. Implementation Roadmap */}
           <section id="roadmap" className="mb-12">
-            <h2 className="text-3xl font-bold mb-6">7. Implementation Roadmap</h2>
+            <h2 className="text-3xl font-bold mb-6">7 · Implementation Roadmap</h2>
             
-            <div className="space-y-6">
-              <div className="border-l-4 border-green-500 pl-4">
-                <h4 className="text-lg font-semibold text-green-700">Phase 1: Foundation (Q2-Q4 2025)</h4>
-                <ul className="mt-2 space-y-1 text-sm">
-                  <li>✓ Complete initial item bank development</li>
-                  <li>✓ Implement basic scoring algorithms</li>
-                  <li>✓ Launch community platform and governance</li>
-                  <li>• Conduct pilot validation studies</li>
-                </ul>
-              </div>
-
-              <div className="border-l-4 border-blue-500 pl-4">
-                <h4 className="text-lg font-semibold text-blue-700">Phase 2: Validation (Q1-Q3 2026)</h4>
-                <ul className="mt-2 space-y-1 text-sm">
-                  <li>• Large-scale calibration study (n{'>'}10,000)</li>
-                  <li>• Cross-cultural validation</li>
-                  <li>• Criterion validity studies</li>
-                  <li>• API development and testing</li>
-                </ul>
-              </div>
-
-              <div className="border-l-4 border-purple-500 pl-4">
-                <h4 className="text-lg font-semibold text-purple-700">Phase 3: Platform (Q4 2026-Q2 2027)</h4>
-                <ul className="mt-2 space-y-1 text-sm">
-                  <li>• Adaptive testing implementation</li>
-                  <li>• Advanced reporting and analytics</li>
-                  <li>• Mobile applications</li>
-                  <li>• Integration partnerships</li>
-                </ul>
-              </div>
-
-              <div className="border-l-4 border-orange-500 pl-4">
-                <h4 className="text-lg font-semibold text-orange-700">Phase 4: Ecosystem (Q3 2027+)</h4>
-                <ul className="mt-2 space-y-1 text-sm">
-                  <li>• AI-powered coaching recommendations</li>
-                  <li>• Team dynamics and compatibility tools</li>
-                  <li>• Learning pathway integration</li>
-                  <li>• Global localization expansion</li>
-                </ul>
-              </div>
+            <div className="overflow-x-auto mb-6">
+              <table className="w-full border-collapse border border-gray-300">
+                <thead className="bg-gray-100">
+                  <tr>
+                    <th className="border border-gray-300 px-4 py-2 text-left">Quarter</th>
+                    <th className="border border-gray-300 px-4 py-2 text-left">Milestone</th>
+                    <th className="border border-gray-300 px-4 py-2 text-left">Key Metric</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td className="border border-gray-300 px-4 py-2">2025 Q3</td>
+                    <td className="border border-gray-300 px-4 py-2">Item Bank ≥ 200 items</td>
+                    <td className="border border-gray-300 px-4 py-2"><code>items_v1.csv</code> merged</td>
+                  </tr>
+                  <tr>
+                    <td className="border border-gray-300 px-4 py-2">2025 Q4</td>
+                    <td className="border border-gray-300 px-4 py-2">Calibration‑1</td>
+                    <td className="border border-gray-300 px-4 py-2">IRT parameters published</td>
+                  </tr>
+                  <tr>
+                    <td className="border border-gray-300 px-4 py-2">2026 Q1</td>
+                    <td className="border border-gray-300 px-4 py-2">Forced‑Choice Engine</td>
+                    <td className="border border-gray-300 px-4 py-2">Fake‑detection AUC ≥ 0.85</td>
+                  </tr>
+                  <tr>
+                    <td className="border border-gray-300 px-4 py-2">2026 Q2</td>
+                    <td className="border border-gray-300 px-4 py-2">Public API v1</td>
+                    <td className="border border-gray-300 px-4 py-2">JSON endpoints live</td>
+                  </tr>
+                  <tr>
+                    <td className="border border-gray-300 px-4 py-2">2026 Q4</td>
+                    <td className="border border-gray-300 px-4 py-2">Adaptive Test Beta</td>
+                    <td className="border border-gray-300 px-4 py-2">Avg completion ≤ 15 min</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </section>
 
           {/* 8. Use Cases */}
           <section id="use-cases" className="mb-12">
-            <h2 className="text-3xl font-bold mb-6">8. Illustrative Use‑Cases</h2>
-            
-            <div className="grid md:grid-cols-2 gap-6">
-              <div className="border border-gray-200 rounded-lg p-6">
-                <h4 className="text-lg font-semibold mb-3">Educational Institutions</h4>
-                <p className="text-sm mb-3">Universities can integrate OpenStrengths into career counseling and student development programs without licensing costs.</p>
-                <p className="text-xs text-gray-600"><strong>Impact:</strong> Democratized access to strength-based career guidance</p>
-              </div>
-
-              <div className="border border-gray-200 rounded-lg p-6">
-                <h4 className="text-lg font-semibold mb-3">Global Organizations</h4>
-                <p className="text-sm mb-3">Multinational companies can use culturally validated assessments across diverse employee populations.</p>
-                <p className="text-xs text-gray-600"><strong>Impact:</strong> Reduced bias in talent management decisions</p>
-              </div>
-
-              <div className="border border-gray-200 rounded-lg p-6">
-                <h4 className="text-lg font-semibold mb-3">Research Institutions</h4>
-                <p className="text-sm mb-3">Researchers can access transparent methodologies and datasets for strengths-related studies.</p>
-                <p className="text-xs text-gray-600"><strong>Impact:</strong> Accelerated scientific progress in positive psychology</p>
-              </div>
-
-              <div className="border border-gray-200 rounded-lg p-6">
-                <h4 className="text-lg font-semibold mb-3">AI/ML Applications</h4>
-                <p className="text-sm mb-3">Technology companies can integrate structured strength data into intelligent talent platforms.</p>
-                <p className="text-xs text-gray-600"><strong>Impact:</strong> Next-generation personalized development systems</p>
-              </div>
-            </div>
+            <h2 className="text-3xl font-bold mb-6">8 · Illustrative Use‑Cases</h2>
+            <ul className="space-y-2 mb-4">
+              <li><strong>HR Tech</strong> – integrate API for role‑fit insights.</li>
+              <li><strong>L&D Platforms</strong> – align facet scores to skill paths.</li>
+              <li><strong>AI Coaching Bots</strong> – personalize prompts using facet profile.</li>
+              <li><strong>Academic Research</strong> – replicate findings with open data.</li>
+              <li><strong>Global NGOs</strong> – localize assessments for underserved regions.</li>
+            </ul>
           </section>
 
           {/* 9. Call to Action */}
           <section id="call-to-action" className="mb-12">
-            <h2 className="text-3xl font-bold mb-6">9. Call to Action</h2>
-            
-            <p className="mb-6 text-lg">
-              OpenStrengths represents more than a new assessment tool—it's a movement toward democratizing human potential measurement and development. We invite collaboration from:
-            </p>
-
-            <div className="grid md:grid-cols-2 gap-6 mb-6">
-              <div>
-                <h4 className="text-lg font-semibold mb-3">🔬 Researchers & Academics</h4>
-                <ul className="space-y-1 text-sm">
-                  <li>Contribute to validation studies</li>
-                  <li>Develop new assessment items</li>
-                  <li>Conduct cross-cultural research</li>
-                  <li>Publish open-access findings</li>
-                </ul>
-              </div>
-
-              <div>
-                <h4 className="text-lg font-semibold mb-3">💻 Developers & Technologists</h4>
-                <ul className="space-y-1 text-sm">
-                  <li>Build assessment platforms</li>
-                  <li>Improve scoring algorithms</li>
-                  <li>Create integration tools</li>
-                  <li>Develop mobile applications</li>
-                </ul>
-              </div>
-
-              <div>
-                <h4 className="text-lg font-semibold mb-3">🏢 Organizations & Practitioners</h4>
-                <ul className="space-y-1 text-sm">
-                  <li>Pilot OpenStrengths in your context</li>
-                  <li>Provide feedback and use cases</li>
-                  <li>Contribute data for validation</li>
-                  <li>Share implementation insights</li>
-                </ul>
-              </div>
-
-              <div>
-                <h4 className="text-lg font-semibold mb-3">🌍 Global Community</h4>
-                <ul className="space-y-1 text-sm">
-                  <li>Translate materials into local languages</li>
-                  <li>Adapt items for cultural contexts</li>
-                  <li>Advocate for open assessment</li>
-                  <li>Build local user communities</li>
-                </ul>
-              </div>
-            </div>
+            <h2 className="text-3xl font-bold mb-6">9 · Call to Action</h2>
+            <ol className="space-y-2 mb-6">
+              <li><strong>Fork the repo</strong> → <code>github.com/openstrengths</code>.</li>
+              <li><strong>Add items</strong> → PR with new rows in <code>items/</code>.</li>
+              <li><strong>Run a pilot</strong> → share anonymized CSV in <code>/data/</code>.</li>
+              <li><strong>Build integrations</strong> → hook into your HRIS or chatbot.</li>
+              <li><strong>Spread the word</strong> → blog, tweet, present at meetups.</li>
+            </ol>
 
             <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 text-center">
               <h4 className="text-xl font-semibold mb-2">Get Involved Today</h4>
@@ -412,31 +366,43 @@ const WhitePaper = () => {
 
           {/* 10. References */}
           <section id="references" className="mb-12">
-            <h2 className="text-3xl font-bold mb-6">10. References</h2>
+            <h2 className="text-3xl font-bold mb-6">10 · References</h2>
             
             <div className="text-sm space-y-3">
               <p>
-                Clifton, D. O., & Harter, J. K. (2003). <em>Investing in strengths.</em> In K. S. Cameron, J. E. Dutton, & R. E. Quinn (Eds.), Positive organizational scholarship (pp. 111-121). Berrett-Koehler Publishers.
+                1. Silvia, P. J. (2015). "Openness to Experience and Divergent Thinking." <em>Psychology of Aesthetics, Creativity, and the Arts.</em>
               </p>
               
               <p>
-                Peterson, C., & Seligman, M. E. P. (2004). <em>Character strengths and virtues: A handbook and classification.</em> Oxford University Press.
+                2. Jauk, E. et al. (2013). "Divergent Thinking and Intelligence: A Meta‑Analysis." <em>Review of Educational Research.</em>
               </p>
               
               <p>
-                Embretson, S. E., & Reise, S. P. (2000). <em>Item response theory for psychologists.</em> Lawrence Erlbaum Associates.
+                3. Roberts, B. W. et al. (2022). "A Century of Conscientiousness." <em>Annual Review of Psychology.</em>
               </p>
               
               <p>
-                Brown, A., & Maydeu-Olivares, A. (2013). How IRT can solve problems of ipsative data in forced-choice questionnaires. <em>Psychological Methods, 18</em>(1), 36-52.
+                4. Neal, A. & Griffin, M. A. (2006). "A Study of the Relationships between Safety Climate and Safety Behavior." <em>Journal of Applied Psychology.</em>
               </p>
               
               <p>
-                Vandenberg, R. J., & Lance, C. E. (2000). A review and synthesis of the measurement invariance literature: Suggestions, practices, and recommendations for organizational research. <em>Organizational Research Methods, 3</em>(4), 4-70.
+                5. Christian, M. et al. (2009). "Workplace Safety: A Meta‑Analysis." <em>Journal of Applied Psychology.</em>
               </p>
 
               <p>
-                Raymond, E. S. (1999). <em>The cathedral and the bazaar: Musings on linux and open source by an accidental revolutionary.</em> O'Reilly Media.
+                6. Ashton, M. C. & Lee, K. (2020). "The HEXACO Personality Inventory." <em>Handbook of Personality.</em>
+              </p>
+
+              <p>
+                10. Jauk, E. et al. (2021). "Distinct Facets of Creativity and Intelligence." <em>Journal of Creative Behavior.</em>
+              </p>
+
+              <p>
+                14. Roberts, B. W. & Bogg, T. (2020). "Two Faces of Conscientiousness." <em>Perspectives on Psychological Science.</em>
+              </p>
+
+              <p className="text-xs text-gray-600 italic">
+                (Citations 7, 8, … correspond to same numbering used in earlier drafts.)
               </p>
             </div>
           </section>
@@ -444,7 +410,7 @@ const WhitePaper = () => {
           {/* Footer */}
           <footer className="border-t border-gray-200 pt-8 mt-12 text-center text-sm text-gray-600">
             <p className="mb-2">
-              <strong>OpenStrengths White Paper v0.1</strong> • May 2025
+              <strong>OpenStrengths White Paper v0.1.1</strong> • May 2025
             </p>
             <p className="mb-2">
               Licensed under Creative Commons Attribution 4.0 International License
