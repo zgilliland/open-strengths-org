@@ -18,45 +18,41 @@ const Logo: React.FC<LogoProps> = ({
     lg: 'h-12'
   };
 
-  const HexagonIcon = ({ className }: { className?: string }) => (
+  const ConstellationIcon = ({ className }: { className?: string }) => (
     <svg 
       viewBox="0 0 48 48" 
       className={className}
       fill="none"
     >
-      {/* Hexagon background */}
-      <path
-        d="M24 4L36.66 12V28L24 36L11.34 28V12L24 4Z"
-        fill="url(#hexGradient)"
-        stroke="currentColor"
-        strokeWidth="1.5"
-      />
-      
-      {/* Six domain indicators */}
-      <circle cx="24" cy="12" r="2" fill="#8B5FBF" opacity="0.8" />
-      <circle cx="32" cy="16" r="2" fill="#E53E3E" opacity="0.8" />
-      <circle cx="32" cy="24" r="2" fill="#38A169" opacity="0.8" />
-      <circle cx="24" cy="28" r="2" fill="#DD6B20" opacity="0.8" />
-      <circle cx="16" cy="24" r="2" fill="#D69E2E" opacity="0.8" />
-      <circle cx="16" cy="16" r="2" fill="#3182CE" opacity="0.8" />
-      
-      {/* Central connecting lines */}
-      <g stroke="currentColor" strokeWidth="1" opacity="0.3">
-        <line x1="24" y1="20" x2="24" y2="12" />
-        <line x1="24" y1="20" x2="32" y2="16" />
-        <line x1="24" y1="20" x2="32" y2="24" />
-        <line x1="24" y1="20" x2="24" y2="28" />
-        <line x1="24" y1="20" x2="16" y2="24" />
-        <line x1="24" y1="20" x2="16" y2="16" />
+      {/* Connection lines - subtle and flowing */}
+      <g stroke="currentColor" strokeWidth="1" opacity="0.2" strokeLinecap="round">
+        <path d="M12 16 Q18 12, 24 14" />
+        <path d="M24 14 Q30 12, 36 16" />
+        <path d="M36 16 Q38 22, 36 28" />
+        <path d="M36 28 Q30 34, 24 32" />
+        <path d="M24 32 Q18 34, 12 28" />
+        <path d="M12 28 Q10 22, 12 16" />
+        <path d="M12 16 Q18 20, 24 22" />
+        <path d="M36 16 Q30 20, 24 22" />
+        <path d="M24 22 Q30 26, 36 28" />
+        <path d="M24 22 Q18 26, 12 28" />
       </g>
       
-      {/* Central core */}
-      <circle cx="24" cy="20" r="3" fill="currentColor" opacity="0.9" />
+      {/* Six domain nodes - positioned organically */}
+      <circle cx="12" cy="16" r="3" fill="#8B5FBF" className="animate-pulse" style={{animationDelay: '0s', animationDuration: '3s'}} />
+      <circle cx="36" cy="16" r="3" fill="#E53E3E" className="animate-pulse" style={{animationDelay: '0.5s', animationDuration: '3s'}} />
+      <circle cx="36" cy="28" r="3" fill="#38A169" className="animate-pulse" style={{animationDelay: '1s', animationDuration: '3s'}} />
+      <circle cx="24" cy="32" r="3" fill="#DD6B20" className="animate-pulse" style={{animationDelay: '1.5s', animationDuration: '3s'}} />
+      <circle cx="12" cy="28" r="3" fill="#D69E2E" className="animate-pulse" style={{animationDelay: '2s', animationDuration: '3s'}} />
+      <circle cx="24" cy="14" r="3" fill="#3182CE" className="animate-pulse" style={{animationDelay: '2.5s', animationDuration: '3s'}} />
+      
+      {/* Central connecting hub - subtle */}
+      <circle cx="24" cy="22" r="2" fill="currentColor" opacity="0.6" />
       
       <defs>
-        <linearGradient id="hexGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="white" stopOpacity="0.1" />
-          <stop offset="100%" stopColor="white" stopOpacity="0.05" />
+        <linearGradient id="nodeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="white" stopOpacity="0.2" />
+          <stop offset="100%" stopColor="white" stopOpacity="0" />
         </linearGradient>
       </defs>
     </svg>
@@ -64,23 +60,24 @@ const Logo: React.FC<LogoProps> = ({
 
   if (variant === 'icon') {
     return (
-      <HexagonIcon className={`${sizeClasses[size]} w-auto ${className}`} />
+      <ConstellationIcon className={`${sizeClasses[size]} w-auto text-gray-700 ${className}`} />
     );
   }
 
   if (variant === 'monogram') {
     return (
-      <div className={`${sizeClasses[size]} flex items-center justify-center bg-primary text-primary-foreground rounded-lg px-2 font-bold ${className}`}>
-        OS
+      <div className={`${sizeClasses[size]} flex items-center justify-center relative ${className}`}>
+        <ConstellationIcon className="h-full w-auto absolute inset-0 opacity-20 text-primary" />
+        <span className="relative z-10 font-bold text-lg text-primary">OS</span>
       </div>
     );
   }
 
   return (
     <div className={`flex items-center gap-3 ${className}`}>
-      <HexagonIcon className={`${sizeClasses[size]} w-auto text-primary`} />
-      <span className="text-xl font-bold text-gray-900">
-        Open<span className="text-primary">Strengths</span>
+      <ConstellationIcon className={`${sizeClasses[size]} w-auto text-gray-700`} />
+      <span className="text-xl font-semibold tracking-tight text-gray-900">
+        Open<span className="text-primary font-medium">Strengths</span>
       </span>
     </div>
   );
