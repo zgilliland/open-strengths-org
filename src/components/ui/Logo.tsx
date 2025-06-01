@@ -24,66 +24,60 @@ const Logo: React.FC<LogoProps> = ({
       className={className}
       fill="none"
     >
-      {/* Six tapered beam rays emanating from center */}
-      <g transform="translate(16,16)">
-        {/* Ray 1: Top (0°) */}
-        <path
-          d="M-1,-3 L-0.3,-12 L0.3,-12 L1,-3 Z"
-          fill="url(#rayGradient)"
-          opacity="1"
-        />
-        {/* Ray 2: Top-right (60°) */}
-        <path
-          d="M-1,-3 L-0.3,-12 L0.3,-12 L1,-3 Z"
-          fill="url(#rayGradient)"
-          transform="rotate(60)"
-          opacity="0.9"
-        />
-        {/* Ray 3: Bottom-right (120°) */}
-        <path
-          d="M-1,-3 L-0.3,-12 L0.3,-12 L1,-3 Z"
-          fill="url(#rayGradient)"
-          transform="rotate(120)"
-          opacity="0.8"
-        />
-        {/* Ray 4: Bottom (180°) */}
-        <path
-          d="M-1,-3 L-0.3,-12 L0.3,-12 L1,-3 Z"
-          fill="url(#rayGradient)"
-          transform="rotate(180)"
-          opacity="0.9"
-        />
-        {/* Ray 5: Bottom-left (240°) */}
-        <path
-          d="M-1,-3 L-0.3,-12 L0.3,-12 L1,-3 Z"
-          fill="url(#rayGradient)"
-          transform="rotate(240)"
-          opacity="0.8"
-        />
-        {/* Ray 6: Top-left (300°) */}
-        <path
-          d="M-1,-3 L-0.3,-12 L0.3,-12 L1,-3 Z"
-          fill="url(#rayGradient)"
-          transform="rotate(300)"
-          opacity="0.9"
-        />
-        
-        {/* Central light source point */}
-        <circle cx="0" cy="0" r="2" fill="url(#centerGradient)" />
-      </g>
-      
       {/* Gradient definitions */}
       <defs>
-        <linearGradient id="rayGradient" x1="0%" y1="100%" x2="0%" y2="0%">
+        <linearGradient id="coreRayGradient" x1="0%" y1="100%" x2="0%" y2="0%">
           <stop offset="0%" stopColor="#6366f1" stopOpacity="1" />
-          <stop offset="50%" stopColor="#8b5cf6" stopOpacity="0.8" />
-          <stop offset="100%" stopColor="#a855f7" stopOpacity="0.3" />
+          <stop offset="50%" stopColor="#8b5cf6" stopOpacity="0.9" />
+          <stop offset="100%" stopColor="#a855f7" stopOpacity="0.1" />
+        </linearGradient>
+        <linearGradient id="glowRayGradient" x1="0%" y1="100%" x2="0%" y2="0%">
+          <stop offset="0%" stopColor="#6366f1" stopOpacity="0.6" />
+          <stop offset="30%" stopColor="#8b5cf6" stopOpacity="0.4" />
+          <stop offset="100%" stopColor="#a855f7" stopOpacity="0" />
         </linearGradient>
         <linearGradient id="centerGradient" x1="0%" y1="0%" x2="100%" y2="100%">
           <stop offset="0%" stopColor="#4f46e5" />
           <stop offset="100%" stopColor="#7c3aed" />
         </linearGradient>
+        <radialGradient id="centerGlow" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stopColor="#6366f1" stopOpacity="0.8" />
+          <stop offset="50%" stopColor="#8b5cf6" stopOpacity="0.4" />
+          <stop offset="100%" stopColor="#a855f7" stopOpacity="0" />
+        </radialGradient>
       </defs>
+      
+      {/* Outer glow layer - wider, more transparent */}
+      <g transform="translate(16,16)">
+        {[0, 60, 120, 180, 240, 300].map((rotation, index) => (
+          <path
+            key={`glow-${index}`}
+            d="M-1.5,-3 L-0.8,-11 L0.8,-11 L1.5,-3 Z"
+            fill="url(#glowRayGradient)"
+            transform={`rotate(${rotation})`}
+            opacity={0.6}
+          />
+        ))}
+      </g>
+      
+      {/* Core rays - thinner, more opaque */}
+      <g transform="translate(16,16)">
+        {[0, 60, 120, 180, 240, 300].map((rotation, index) => (
+          <path
+            key={`core-${index}`}
+            d="M-0.6,-2.5 L-0.3,-10 L0.3,-10 L0.6,-2.5 Z"
+            fill="url(#coreRayGradient)"
+            transform={`rotate(${rotation})`}
+            opacity={1}
+          />
+        ))}
+      </g>
+      
+      {/* Center glow */}
+      <circle cx="16" cy="16" r="3" fill="url(#centerGlow)" opacity="0.8" />
+      
+      {/* Central light source point */}
+      <circle cx="16" cy="16" r="1.5" fill="url(#centerGradient)" />
     </svg>
   );
 
