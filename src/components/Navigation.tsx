@@ -36,7 +36,7 @@ const Navigation = () => {
             onClick={scrollToTop}
             className="hover:opacity-80 transition-opacity"
           >
-            <Logo size="md" variant="full" />
+            <Logo size="lg" variant="full" />
           </button>
 
           {/* Desktop Navigation */}
