@@ -6,10 +6,10 @@
       <stop offset="0%" stop-color="#1e1b4b"/>
       <stop offset="100%" stop-color="#312e81"/>
     </linearGradient>
-    <linearGradient id="rayGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#6366f1"/>
-      <stop offset="50%" stop-color="#8b5cf6"/>
-      <stop offset="100%" stop-color="#a855f7"/>
+    <linearGradient id="rayGradient" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="#6366f1" stop-opacity="1"/>
+      <stop offset="50%" stop-color="#8b5cf6" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#a855f7" stop-opacity="0.3"/>
     </linearGradient>
     <linearGradient id="centerGradient" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#4f46e5"/>
@@ -20,46 +20,46 @@
   <!-- Background -->
   <rect width="32" height="32" rx="6" fill="url(#bgGradient)"/>
   
-  <!-- Six rays emanating from center -->
+  <!-- Six tapered beam rays emanating from center -->
   <g transform="translate(16,16)">
     <!-- Six rays at 60° intervals -->
     <path
-      d="M0,-10 L1.5,-3 L0,-1 L-1.5,-3 Z"
+      d="M-0.8,-2.5 L-0.2,-10 L0.2,-10 L0.8,-2.5 Z"
       fill="url(#rayGradient)"
       transform="rotate(0)"
     />
     <path
-      d="M0,-10 L1.5,-3 L0,-1 L-1.5,-3 Z"
+      d="M-0.8,-2.5 L-0.2,-10 L0.2,-10 L0.8,-2.5 Z"
       fill="url(#rayGradient)"
       transform="rotate(60)"
       opacity="0.9"
     />
     <path
-      d="M0,-10 L1.5,-3 L0,-1 L-1.5,-3 Z"
+      d="M-0.8,-2.5 L-0.2,-10 L0.2,-10 L0.8,-2.5 Z"
       fill="url(#rayGradient)"
       transform="rotate(120)"
       opacity="0.8"
     />
     <path
-      d="M0,-10 L1.5,-3 L0,-1 L-1.5,-3 Z"
+      d="M-0.8,-2.5 L-0.2,-10 L0.2,-10 L0.8,-2.5 Z"
       fill="url(#rayGradient)"
       transform="rotate(180)"
       opacity="0.9"
     />
     <path
-      d="M0,-10 L1.5,-3 L0,-1 L-1.5,-3 Z"
+      d="M-0.8,-2.5 L-0.2,-10 L0.2,-10 L0.8,-2.5 Z"
       fill="url(#rayGradient)"
       transform="rotate(240)"
       opacity="0.8"
     />
     <path
-      d="M0,-10 L1.5,-3 L0,-1 L-1.5,-3 Z"
+      d="M-0.8,-2.5 L-0.2,-10 L0.2,-10 L0.8,-2.5 Z"
       fill="url(#rayGradient)"
       transform="rotate(300)"
       opacity="0.9"
     />
     
-    <!-- Central core point -->
-    <circle cx="0" cy="0" r="2" fill="url(#centerGradient)" />
+    <!-- Central light source point -->
+    <circle cx="0" cy="0" r="1.5" fill="url(#centerGradient)" />
   </g>
 </svg>
