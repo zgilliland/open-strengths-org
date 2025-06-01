@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -18,6 +19,9 @@ export default {
 			}
 		},
 		extend: {
+			fontFamily: {
+				inter: ['Inter', 'sans-serif'],
+			},
 			colors: {
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
@@ -61,6 +65,37 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				// Strength domain colors
+				insight: {
+					DEFAULT: '#8B5FBF',
+					light: '#B794E6',
+					lighter: '#E9D8FD'
+				},
+				drive: {
+					DEFAULT: '#E53E3E',
+					light: '#FC8181',
+					lighter: '#FED7D7'
+				},
+				connection: {
+					DEFAULT: '#38A169',
+					light: '#68D391',
+					lighter: '#C6F6D5'
+				},
+				influence: {
+					DEFAULT: '#DD6B20',
+					light: '#F6AD55',
+					lighter: '#FEEBC8'
+				},
+				creativity: {
+					DEFAULT: '#D69E2E',
+					light: '#F6E05E',
+					lighter: '#FEFCBF'
+				},
+				stability: {
+					DEFAULT: '#3182CE',
+					light: '#63B3ED',
+					lighter: '#BEE3F8'
 				}
 			},
 			borderRadius: {
@@ -84,11 +119,27 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'fade-in': {
+					'0%': {
+						opacity: '0',
+						transform: 'translateY(10px)'
+					},
+					'100%': {
+						opacity: '1',
+						transform: 'translateY(0)'
+					}
+				},
+				'slow-rotate': {
+					'0%': { transform: 'rotate(0deg)' },
+					'100%': { transform: 'rotate(360deg)' }
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'fade-in': 'fade-in 0.6s ease-out',
+				'slow-rotate': 'slow-rotate 20s linear infinite'
 			}
 		}
 	},
