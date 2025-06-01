@@ -283,7 +283,7 @@ const WhitePaper = () => {
               <div className="border-l-4 border-blue-500 pl-4">
                 <h4 className="text-lg font-semibold text-blue-700">Phase 2: Validation (Q1-Q3 2026)</h4>
                 <ul className="mt-2 space-y-1 text-sm">
-                  <li>• Large-scale calibration study (n>10,000)</li>
+                  <li>• Large-scale calibration study (n{'>'}10,000)</li>
                   <li>• Cross-cultural validation</li>
                   <li>• Criterion validity studies</li>
                   <li>• API development and testing</li>
