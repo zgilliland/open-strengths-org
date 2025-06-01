@@ -6,86 +6,52 @@
       <stop offset="0%" stop-color="#1e1b4b"/>
       <stop offset="100%" stop-color="#312e81"/>
     </linearGradient>
-    <linearGradient id="refraction1" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#6366f1" stop-opacity="0.8"/>
-      <stop offset="50%" stop-color="#8b5cf6" stop-opacity="0.6"/>
-      <stop offset="100%" stop-color="#a855f7" stop-opacity="0.3"/>
+    <linearGradient id="primary" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4f46e5" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#7c3aed" stop-opacity="0.4"/>
     </linearGradient>
-    <linearGradient id="refraction2" x1="100%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#4f46e5" stop-opacity="0.7"/>
-      <stop offset="50%" stop-color="#7c3aed" stop-opacity="0.5"/>
-      <stop offset="100%" stop-color="#c084fc" stop-opacity="0.2"/>
+    <linearGradient id="secondary" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#6366f1" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#8b5cf6" stop-opacity="0.2"/>
     </linearGradient>
-    <linearGradient id="refraction3" x1="50%" y1="0%" x2="50%" y2="100%">
-      <stop offset="0%" stop-color="#8b5cf6" stop-opacity="0.9"/>
-      <stop offset="50%" stop-color="#6366f1" stop-opacity="0.4"/>
-      <stop offset="100%" stop-color="#a855f7" stop-opacity="0.1"/>
-    </linearGradient>
-    <linearGradient id="centerCore" x1="0%" y1="0%" x2="100%" y2="100%">
+    <linearGradient id="core" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#4f46e5"/>
       <stop offset="100%" stop-color="#7c3aed"/>
     </linearGradient>
-    <radialGradient id="centerGlow" cx="50%" cy="50%" r="60%">
-      <stop offset="0%" stop-color="#6366f1" stop-opacity="0.9"/>
-      <stop offset="70%" stop-color="#8b5cf6" stop-opacity="0.3"/>
-      <stop offset="100%" stop-color="#a855f7" stop-opacity="0"/>
-    </radialGradient>
   </defs>
   
   <!-- Background -->
   <rect width="32" height="32" rx="6" fill="url(#bgGradient)"/>
   
-  <!-- Geometric refraction elements -->
+  <!-- Structured geometric refraction elements -->
   <g transform="translate(16,16)">
-    <!-- First prism - vertical -->
-    <path
-      d="M-2,-12 L2,-12 L6,-4 L-6,-4 Z"
-      fill="url(#refraction1)"
-      opacity="0.7"
+    <!-- Central hexagonal core - represents the "six domains" -->
+    <polygon
+      points="-4,0 -2,-3.5 2,-3.5 4,0 2,3.5 -2,3.5"
+      fill="url(#core)"
     />
     
-    <!-- Second prism - angled left -->
+    <!-- First light refraction prism - positioned at 0° -->
     <path
-      d="M-12,-2 L-4,-6 L4,6 L-4,2 Z"
-      fill="url(#refraction2)"
-      opacity="0.6"
-      transform="rotate(60)"
+      d="M-1,-8 L1,-8 L4,-2 L-4,-2 Z"
+      fill="url(#primary)"
+      opacity="0.8"
     />
     
-    <!-- Third prism - angled right -->
+    <!-- Second light refraction prism - positioned at 120° -->
     <path
-      d="M-12,-2 L-4,-6 L4,6 L-4,2 Z"
-      fill="url(#refraction3)"
+      d="M-1,-8 L1,-8 L4,-2 L-4,-2 Z"
+      fill="url(#secondary)"
       opacity="0.5"
-      transform="rotate(-60)"
+      transform="rotate(120)"
     />
     
-    <!-- Fourth element - creating intersection effects -->
-    <polygon
-      points="-8,0 0,-8 8,0 0,8"
-      fill="url(#refraction1)"
-      opacity="0.3"
-      transform="rotate(45)"
-    />
-    
-    <!-- Fifth element - smaller inner geometry -->
-    <polygon
-      points="-4,-2 4,-2 2,4 -2,4"
-      fill="url(#refraction2)"
-      opacity="0.4"
-    />
-    
-    <!-- Sixth element - central hexagon -->
-    <polygon
-      points="-3,0 -1.5,-2.6 1.5,-2.6 3,0 1.5,2.6 -1.5,2.6"
-      fill="url(#refraction3)"
-      opacity="0.6"
+    <!-- Third light refraction prism - positioned at 240° -->
+    <path
+      d="M-1,-8 L1,-8 L4,-2 L-4,-2 Z"
+      fill="url(#primary)"
+      opacity="0.2"
+      transform="rotate(240)"
     />
   </g>
-  
-  <!-- Central glow effect -->
-  <circle cx="16" cy="16" r="4" fill="url(#centerGlow)" opacity="0.6" />
-  
-  <!-- Central core -->
-  <circle cx="16" cy="16" r="1.8" fill="url(#centerCore)" />
 </svg>
