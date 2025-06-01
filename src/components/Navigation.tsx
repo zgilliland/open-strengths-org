@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { Menu, Github } from 'lucide-react';
+import Logo from '@/components/ui/Logo';
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -33,9 +34,9 @@ const Navigation = () => {
           {/* Logo */}
           <button 
             onClick={scrollToTop}
-            className="text-xl font-bold text-gray-900 hover:text-primary transition-colors"
+            className="hover:opacity-80 transition-opacity"
           >
-            OpenStrengths
+            <Logo size="md" variant="full" />
           </button>
 
           {/* Desktop Navigation */}
@@ -67,6 +68,9 @@ const Navigation = () => {
               </SheetTrigger>
               <SheetContent>
                 <div className="flex flex-col space-y-6 mt-8">
+                  <div className="mb-4">
+                    <Logo size="sm" variant="full" />
+                  </div>
                   {navItems.map((item) => (
                     <button
                       key={item.label}
