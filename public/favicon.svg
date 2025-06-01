@@ -6,25 +6,60 @@
       <stop offset="0%" stop-color="#1e1b4b"/>
       <stop offset="100%" stop-color="#312e81"/>
     </linearGradient>
-    <linearGradient id="pathGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+    <linearGradient id="petalGradient" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#6366f1"/>
       <stop offset="50%" stop-color="#8b5cf6"/>
       <stop offset="100%" stop-color="#a855f7"/>
+    </linearGradient>
+    <linearGradient id="centerGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4f46e5"/>
+      <stop offset="100%" stop-color="#7c3aed"/>
     </linearGradient>
   </defs>
   
   <!-- Background -->
   <rect width="32" height="32" rx="6" fill="url(#bgGradient)"/>
   
-  <!-- Simplified flowing paths -->
-  <g stroke="url(#pathGradient)" stroke-width="2" stroke-linecap="round" fill="none" opacity="0.9">
-    <!-- Main flowing path -->
-    <path d="M6 22 Q14 10 22 18 Q26 22 24 26" />
+  <!-- Six-petaled flower/star representing the 6 domains -->
+  <g transform="translate(16,16)">
+    <!-- Six petals/points arranged in a circle -->
+    <path
+      d="M0,-10 L2.5,-3 L0,0 L-2.5,-3 Z"
+      fill="url(#petalGradient)"
+      transform="rotate(0)"
+    />
+    <path
+      d="M0,-10 L2.5,-3 L0,0 L-2.5,-3 Z"
+      fill="url(#petalGradient)"
+      transform="rotate(60)"
+      opacity="0.9"
+    />
+    <path
+      d="M0,-10 L2.5,-3 L0,0 L-2.5,-3 Z"
+      fill="url(#petalGradient)"
+      transform="rotate(120)"
+      opacity="0.8"
+    />
+    <path
+      d="M0,-10 L2.5,-3 L0,0 L-2.5,-3 Z"
+      fill="url(#petalGradient)"
+      transform="rotate(180)"
+      opacity="0.9"
+    />
+    <path
+      d="M0,-10 L2.5,-3 L0,0 L-2.5,-3 Z"
+      fill="url(#petalGradient)"
+      transform="rotate(240)"
+      opacity="0.8"
+    />
+    <path
+      d="M0,-10 L2.5,-3 L0,0 L-2.5,-3 Z"
+      fill="url(#petalGradient)"
+      transform="rotate(300)"
+      opacity="0.9"
+    />
     
-    <!-- Intersecting path -->
-    <path d="M10 6 Q18 14 26 10" opacity="0.7" />
+    <!-- Central connecting point -->
+    <circle cx="0" cy="0" r="1.5" fill="url(#centerGradient)" />
   </g>
-  
-  <!-- Key intersection point -->
-  <circle cx="18" cy="16" r="1.5" fill="url(#pathGradient)" />
 </svg>
