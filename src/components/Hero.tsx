@@ -1,6 +1,7 @@
 
 import { Button } from '@/components/ui/button';
-import { Github, Download } from 'lucide-react';
+import { Github, FileText } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Hero = () => {
   return (
@@ -31,9 +32,11 @@ const Hero = () => {
         </h2>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in">
-          <Button size="lg" className="text-lg px-8 py-6 group">
-            <Download className="w-5 h-5 mr-2 group-hover:animate-bounce" />
-            Download White Paper
+          <Button size="lg" className="text-lg px-8 py-6 group" asChild>
+            <Link to="/white-paper">
+              <FileText className="w-5 h-5 mr-2 group-hover:animate-bounce" />
+              Read White Paper
+            </Link>
           </Button>
           
           <Button 
