@@ -1,4 +1,3 @@
-
 import { Button } from '@/components/ui/button';
 import { ArrowLeft, Download, Share2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -10,8 +9,8 @@ const WhitePaper = () => {
   const [frontmatter, setFrontmatter] = useState<any>({});
 
   useEffect(() => {
-    // Load the markdown content from GitHub
-    fetch('https://raw.githubusercontent.com/zgilliland/OpenStrengths/7861e529132b38ce80ac1a3c9618c63c671a55a2/whitepaper.md')
+    // Load the markdown content from GitHub main branch
+    fetch('https://raw.githubusercontent.com/zgilliland/OpenStrengths/main/whitepaper.md')
       .then(response => {
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
