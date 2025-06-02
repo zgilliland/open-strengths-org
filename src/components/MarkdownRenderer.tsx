@@ -1,4 +1,6 @@
+
 import { Button } from '@/components/ui/button';
+import { useEffect } from 'react';
 
 interface MarkdownRendererProps {
   content: string;
@@ -12,6 +14,41 @@ interface MarkdownRendererProps {
 }
 
 const MarkdownRenderer = ({ content, frontmatter }: MarkdownRendererProps) => {
+  // Helper function to convert header text to anchor ID
+  const createAnchorId = (text: string) => {
+    return text
+      .toLowerCase()
+      .replace(/[^\w\s-]/g, '') // Remove special characters except hyphens
+      .replace(/\s+/g, '-') // Replace spaces with hyphens
+      .replace(/-+/g, '-') // Replace multiple hyphens with single hyphen
+      .trim();
+  };
+
+  // Handle scroll to anchor on component mount and hash changes
+  useEffect(() => {
+    const scrollToAnchor = () => {
+      if (window.location.hash) {
+        const hash = window.location.hash.substring(1);
+        const element = document.getElementById(hash);
+        if (element) {
+          setTimeout(() => {
+            element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }, 100);
+        }
+      }
+    };
+
+    // Scroll on mount
+    scrollToAnchor();
+
+    // Listen for hash changes
+    window.addEventListener('hashchange', scrollToAnchor);
+    
+    return () => {
+      window.removeEventListener('hashchange', scrollToAnchor);
+    };
+  }, [content]);
+
   // Remove duplicate header content that's already shown in the page header
   const cleanContent = (markdown: string) => {
     const lines = markdown.split('\n');
@@ -165,10 +202,19 @@ const MarkdownRenderer = ({ content, frontmatter }: MarkdownRendererProps) => {
   // Simple markdown-to-HTML converter for basic content
   const convertMarkdownToHtml = (markdown: string) => {
     return markdown
-      // Headers
-      .replace(/^### (.*$)/gim, '<h3 class="text-xl sm:text-2xl font-semibold mb-3 sm:mb-4">$1</h3>')
-      .replace(/^## (.*$)/gim, '<h2 class="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6 mt-8 sm:mt-12">$1</h2>')
-      .replace(/^# (.*$)/gim, '<h1 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-4 sm:mb-6">$1</h1>')
+      // Headers with proper IDs for anchor navigation
+      .replace(/^### (.*$)/gim, (match, title) => {
+        const id = createAnchorId(title);
+        return `<h3 id="${id}" class="text-xl sm:text-2xl font-semibold mb-3 sm:mb-4">${title}</h3>`;
+      })
+      .replace(/^## (.*$)/gim, (match, title) => {
+        const id = createAnchorId(title);
+        return `<h2 id="${id}" class="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6 mt-8 sm:mt-12">${title}</h2>`;
+      })
+      .replace(/^# (.*$)/gim, (match, title) => {
+        const id = createAnchorId(title);
+        return `<h1 id="${id}" class="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-4 sm:mb-6">${title}</h1>`;
+      })
       // Bold and italic
       .replace(/\*\*(.*?)\*\*/gim, '<strong class="font-semibold">$1</strong>')
       .replace(/\*(.*?)\*/gim, '<em class="italic">$1</em>')
