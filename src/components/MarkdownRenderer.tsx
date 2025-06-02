@@ -54,11 +54,14 @@ const MarkdownRenderer = ({ content, frontmatter }: MarkdownRendererProps) => {
     return lines.slice(startIndex).join('\n');
   };
 
-  // Process nested lists properly with stack-based approach
+  // Completely rewritten list processing logic
   const processLists = (content: string) => {
     const lines = content.split('\n');
     const result: string[] = [];
-    let listStack: Array<{ type: 'ol' | 'ul', indent: number, depth: number }> = [];
+    let inOrderedList = false;
+    let inUnorderedList = false;
+    
+    console.log('Processing lists, first 20 lines:', lines.slice(0, 20));
     
     for (let i = 0; i < lines.length; i++) {
       const line = lines[i];
@@ -66,102 +69,89 @@ const MarkdownRenderer = ({ content, frontmatter }: MarkdownRendererProps) => {
       
       // Skip empty lines - they don't break list continuity
       if (trimmedLine === '') {
-        // Only add empty line if we're not in a list
-        if (listStack.length === 0) {
+        if (!inOrderedList && !inUnorderedList) {
           result.push(line);
         }
         continue;
       }
       
-      // Count leading spaces for indentation
-      const indent = line.length - line.trimStart().length;
+      // Check if this is a numbered list item (like "1.", "2.", "10.")
+      const numberedMatch = trimmedLine.match(/^(\d+)\.\s+(.+)$/);
+      // Check if this is a sub-item with number (like "* 3.1", "* 4.2")
+      const subNumberedMatch = trimmedLine.match(/^\*\s+(\d+\.\d+)\s+(.+)$/);
+      // Check if this is a regular bullet item
+      const bulletMatch = trimmedLine.match(/^\*\s+(.+)$/);
       
-      // Check if this is a list item
-      const isNumberedItem = /^\d+\.\s/.test(trimmedLine);
-      const isBulletItem = /^[\*\-]\s/.test(trimmedLine);
-      const isSubNumberedItem = /^\*\s\d+\.\d+/.test(trimmedLine); // "* 3.1", "* 3.2" etc
-      const isListItem = isNumberedItem || isBulletItem;
-      
-      if (isListItem) {
-        // Determine list type - sub-numbered items should be treated as unordered lists to preserve their numbering
-        let listType: 'ol' | 'ul' = 'ul';
-        if (isNumberedItem && !isSubNumberedItem) {
-          listType = 'ol';
+      if (numberedMatch) {
+        // Close any open unordered list
+        if (inUnorderedList) {
+          result.push('</ul>');
+          inUnorderedList = false;
         }
         
-        // Calculate depth based on content type
-        let depth = 0;
-        if (isSubNumberedItem || (isBulletItem && indent > 0)) {
-          depth = 1;
+        // Open ordered list if not already open
+        if (!inOrderedList) {
+          result.push('<ol class="space-y-2 mb-4 ml-4 list-decimal">');
+          inOrderedList = true;
         }
         
-        // Special case: if we have a numbered item (like "5.") after sub-items,
-        // it should be at depth 0 regardless of previous context
-        if (isNumberedItem && !isSubNumberedItem) {
-          depth = 0;
-        }
-        
-        // Close lists that are deeper than current depth
-        while (listStack.length > 0 && listStack[listStack.length - 1].depth > depth) {
-          const closingList = listStack.pop()!;
-          result.push(`</${closingList.type}>`);
-        }
-        
-        // If we're transitioning back to main items (depth 0) after sub-items,
-        // close all remaining lists
-        if (depth === 0 && listStack.length > 0) {
-          while (listStack.length > 0) {
-            const closingList = listStack.pop()!;
-            result.push(`</${closingList.type}>`);
-          }
-        }
-        
-        // Check if we need to open a new list
-        const needNewList = listStack.length === 0 || 
-                           listStack[listStack.length - 1].type !== listType ||
-                           listStack[listStack.length - 1].depth !== depth;
-        
-        if (needNewList) {
-          // Open new list
-          const className = listType === 'ol' 
-            ? (depth === 0 ? 'space-y-2 mb-4 ml-4 list-decimal' : 'space-y-1 mb-2 ml-6 list-none')
-            : (depth === 0 ? 'space-y-1 mb-4 ml-4 list-disc' : 'space-y-1 mb-2 ml-6 list-none');
-          result.push(`<${listType} class="${className}">`);
-          listStack.push({ type: listType, indent, depth });
-        }
-        
-        // Extract the content after the list marker
-        let itemContent = '';
-        if (isSubNumberedItem) {
-          // For sub-numbered items like "* 3.1 Something", preserve the numbering
-          itemContent = trimmedLine.replace(/^\*\s/, '');
-        } else {
-          // For regular items, remove the marker
-          itemContent = trimmedLine.replace(/^[\d]+\.\s|^[\*\-]\s/, '');
-        }
-        
-        // Process inline markdown in the list item
-        itemContent = itemContent
+        const content = numberedMatch[2];
+        const processedContent = content
           .replace(/\[([^\]]*)\]\(([^\)]*)\)/g, '<a href="$2" class="text-blue-600 hover:underline">$1</a>')
           .replace(/\*\*(.*?)\*\*/g, '<strong class="font-semibold">$1</strong>')
           .replace(/\*(.*?)\*/g, '<em class="italic">$1</em>')
           .replace(/`([^`]*)`/g, '<code class="bg-gray-100 px-2 py-1 rounded text-sm font-mono">$1</code>');
         
-        result.push(`<li class="mb-1">${itemContent}</li>`);
+        result.push(`<li class="mb-1">${processedContent}</li>`);
+        
+      } else if (subNumberedMatch || (bulletMatch && !numberedMatch)) {
+        // Close any open ordered list
+        if (inOrderedList) {
+          result.push('</ol>');
+          inOrderedList = false;
+        }
+        
+        // Open unordered list if not already open
+        if (!inUnorderedList) {
+          result.push('<ul class="space-y-1 mb-2 ml-6 list-disc">');
+          inUnorderedList = true;
+        }
+        
+        let content = '';
+        if (subNumberedMatch) {
+          content = `${subNumberedMatch[1]} ${subNumberedMatch[2]}`;
+        } else if (bulletMatch) {
+          content = bulletMatch[1];
+        }
+        
+        const processedContent = content
+          .replace(/\[([^\]]*)\]\(([^\)]*)\)/g, '<a href="$2" class="text-blue-600 hover:underline">$1</a>')
+          .replace(/\*\*(.*?)\*\*/g, '<strong class="font-semibold">$1</strong>')
+          .replace(/\*(.*?)\*/g, '<em class="italic">$1</em>')
+          .replace(/`([^`]*)`/g, '<code class="bg-gray-100 px-2 py-1 rounded text-sm font-mono">$1</code>');
+        
+        result.push(`<li class="mb-1">${processedContent}</li>`);
+        
       } else {
-        // Close all open lists when we hit non-list content (but not for empty lines)
-        while (listStack.length > 0) {
-          const closingList = listStack.pop()!;
-          result.push(`</${closingList.type}>`);
+        // Close any open lists when we hit non-list content
+        if (inOrderedList) {
+          result.push('</ol>');
+          inOrderedList = false;
+        }
+        if (inUnorderedList) {
+          result.push('</ul>');
+          inUnorderedList = false;
         }
         result.push(line);
       }
     }
     
     // Close any remaining open lists
-    while (listStack.length > 0) {
-      const closingList = listStack.pop()!;
-      result.push(`</${closingList.type}>`);
+    if (inOrderedList) {
+      result.push('</ol>');
+    }
+    if (inUnorderedList) {
+      result.push('</ul>');
     }
     
     return result.join('\n');

@@ -9,40 +9,36 @@ const WhitePaper = () => {
   const [frontmatter, setFrontmatter] = useState<any>({});
 
   useEffect(() => {
-    // Load the markdown content from GitHub main branch
-    fetch('https://raw.githubusercontent.com/zgilliland/OpenStrengths/main/whitepaper.md')
-      .then(response => {
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        return response.text();
-      })
-      .then(text => {
-        // Parse frontmatter
-        const frontmatterMatch = text.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
-        if (frontmatterMatch) {
-          const frontmatterText = frontmatterMatch[1];
-          const content = frontmatterMatch[2];
-          
-          // Simple frontmatter parser
-          const fm: any = {};
-          frontmatterText.split('\n').forEach(line => {
-            const [key, ...valueParts] = line.split(':');
-            if (key && valueParts.length > 0) {
-              fm[key.trim()] = valueParts.join(':').trim().replace(/"/g, '');
-            }
-          });
-          
-          setFrontmatter(fm);
-          setMarkdownContent(content);
-        } else {
-          setMarkdownContent(text);
-        }
-      })
-      .catch(error => {
-        console.error('Error loading markdown:', error);
-        setMarkdownContent('# Error loading content\n\nFailed to load the whitepaper from GitHub. Please check your internet connection and try again.');
-      });
+    // Load the local markdown content instead of fetching from GitHub to debug the issue
+    import('/src/content/whitepaper.md?raw').then(module => {
+      const text = module.default;
+      console.log('Loaded markdown content:', text.substring(0, 500));
+      
+      // Parse frontmatter
+      const frontmatterMatch = text.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
+      if (frontmatterMatch) {
+        const frontmatterText = frontmatterMatch[1];
+        const content = frontmatterMatch[2];
+        
+        // Simple frontmatter parser
+        const fm: any = {};
+        frontmatterText.split('\n').forEach(line => {
+          const [key, ...valueParts] = line.split(':');
+          if (key && valueParts.length > 0) {
+            fm[key.trim()] = valueParts.join(':').trim().replace(/"/g, '');
+          }
+        });
+        
+        console.log('Parsed frontmatter:', fm);
+        setFrontmatter(fm);
+        setMarkdownContent(content);
+      } else {
+        setMarkdownContent(text);
+      }
+    }).catch(error => {
+      console.error('Error loading local markdown:', error);
+      setMarkdownContent('# Error loading content\n\nFailed to load the whitepaper content. Please check the file and try again.');
+    });
   }, []);
 
   return (
