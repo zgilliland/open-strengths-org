@@ -1,3 +1,4 @@
+
 import { Button } from '@/components/ui/button';
 import { ArrowLeft, Download } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -74,26 +75,29 @@ const WhitePaper = () => {
     return (
       <div className="min-h-screen bg-white">
         {/* Header Skeleton */}
-        <div className="bg-gray-50 border-b border-gray-200">
-          <div className="max-w-4xl mx-auto px-4 py-6">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-4 gap-4">
-              <div className="flex items-center gap-4">
-                <Button variant="ghost" asChild>
-                  <Link to="/" className="flex items-center gap-2">
-                    <ArrowLeft className="w-4 h-4" />
-                    Back to Home
-                  </Link>
-                </Button>
-                <Logo size="md" variant="full" />
-              </div>
-              <Button variant="outline" size="sm" className="w-full sm:w-auto">
+        <div className="bg-gradient-to-r from-gray-50 to-gray-100 border-b border-gray-200">
+          <div className="max-w-6xl mx-auto px-6 py-8">
+            {/* Navigation Bar */}
+            <div className="flex items-center justify-between mb-8">
+              <Button variant="ghost" size="sm" className="text-gray-600 hover:text-gray-900">
+                <ArrowLeft className="w-4 h-4 mr-2" />
+                Back to Home
+              </Button>
+              <Button variant="default" size="sm" className="bg-blue-600 hover:bg-blue-700">
                 <Download className="w-4 h-4 mr-2" />
                 Download PDF
               </Button>
             </div>
-            <Skeleton className="h-8 w-3/4 mb-2" />
-            <Skeleton className="h-6 w-1/2 mb-1" />
-            <Skeleton className="h-4 w-1/3" />
+            
+            {/* Logo and Title Area */}
+            <div className="text-center">
+              <div className="flex justify-center mb-6">
+                <Logo size="lg" variant="full" />
+              </div>
+              <Skeleton className="h-10 w-3/4 mx-auto mb-3" />
+              <Skeleton className="h-6 w-1/2 mx-auto mb-2" />
+              <Skeleton className="h-4 w-1/3 mx-auto" />
+            </div>
           </div>
         </div>
 
@@ -115,45 +119,65 @@ const WhitePaper = () => {
   return (
     <div className="min-h-screen bg-white">
       {/* Header */}
-      <div className="bg-gray-50 border-b border-gray-200">
-        <div className="max-w-4xl mx-auto px-4 py-6">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-4 gap-4">
-            <div className="flex items-center gap-4">
-              <Button variant="ghost" asChild>
-                <Link to="/" className="flex items-center gap-2">
-                  <ArrowLeft className="w-4 h-4" />
-                  Back to Home
-                </Link>
-              </Button>
-              <Logo size="md" variant="full" />
-            </div>
-            <Button variant="outline" size="sm" className="w-full sm:w-auto" onClick={handleDownloadPDF}>
+      <div className="bg-gradient-to-r from-gray-50 to-gray-100 border-b border-gray-200">
+        <div className="max-w-6xl mx-auto px-6 py-8">
+          {/* Navigation Bar */}
+          <div className="flex items-center justify-between mb-8">
+            <Button variant="ghost" size="sm" asChild className="text-gray-600 hover:text-gray-900 hover:bg-white/50">
+              <Link to="/" className="flex items-center">
+                <ArrowLeft className="w-4 h-4 mr-2" />
+                Back to Home
+              </Link>
+            </Button>
+            <Button 
+              variant="default" 
+              size="sm" 
+              onClick={handleDownloadPDF}
+              className="bg-blue-600 hover:bg-blue-700 text-white shadow-sm"
+            >
               <Download className="w-4 h-4 mr-2" />
               Download PDF
             </Button>
           </div>
+          
+          {/* Error Display */}
           {error && (
-            <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-4">
+            <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-6 max-w-4xl mx-auto">
               <p className="text-red-800 text-sm">{error}</p>
             </div>
           )}
-          {frontmatter.title && (
-            <>
-              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-2">
-                {frontmatter.title}
-              </h1>
-              {frontmatter.subtitle && (
-                <p className="text-lg sm:text-xl text-gray-600 italic mb-1">
-                  {frontmatter.subtitle}
-                </p>
-              )}
-              <p className="text-sm text-gray-500">
-                {frontmatter.type && `${frontmatter.type}`}
-                {frontmatter.version && ` · Version ${frontmatter.version}`}
-                {frontmatter.date && ` (${frontmatter.date})`}
-              </p>
-            </>
-          )}
+          
+          {/* Logo and Title Area */}
+          <div className="text-center">
+            <div className="flex justify-center mb-6">
+              <Logo size="lg" variant="full" />
+            </div>
+            {frontmatter.title && (
+              <>
+                <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 leading-tight">
+                  {frontmatter.title}
+                </h1>
+                {frontmatter.subtitle && (
+                  <p className="text-xl sm:text-2xl text-gray-600 italic mb-3 max-w-3xl mx-auto">
+                    {frontmatter.subtitle}
+                  </p>
+                )}
+                <div className="flex flex-wrap items-center justify-center gap-2 text-sm text-gray-500">
+                  {frontmatter.type && (
+                    <span className="bg-gray-200 px-3 py-1 rounded-full">{frontmatter.type}</span>
+                  )}
+                  {frontmatter.version && (
+                    <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full">
+                      Version {frontmatter.version}
+                    </span>
+                  )}
+                  {frontmatter.date && (
+                    <span className="text-gray-600">{frontmatter.date}</span>
+                  )}
+                </div>
+              </>
+            )}
+          </div>
         </div>
       </div>
 
