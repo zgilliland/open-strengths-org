@@ -13,7 +13,7 @@ const WhitePaper = () => {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    // Always fetch from the public GitHub repository to get the latest content
+    // Always fetch from the correct GitHub repository to get the latest content
     // This ensures we have the most current version with proper links and updates
     const fetchFromGitHub = async () => {
       setIsLoading(true);
@@ -21,7 +21,7 @@ const WhitePaper = () => {
       
       try {
         console.log('Fetching whitepaper from GitHub repository...');
-        const response = await fetch('https://raw.githubusercontent.com/openstrengths/openstrengths/main/whitepaper.md');
+        const response = await fetch('https://raw.githubusercontent.com/zgilliland/OpenStrengths/main/whitepaper.md');
         
         if (!response.ok) {
           throw new Error(`GitHub fetch failed: ${response.status} ${response.statusText}`);
