@@ -1,6 +1,6 @@
 
 import { Button } from '@/components/ui/button';
-import { Github, FileText } from 'lucide-react';
+import { FileText } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const Hero = () => {
@@ -31,24 +31,12 @@ const Hero = () => {
           discovering and developing human potential.
         </h2>
 
-        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in">
+        <div className="flex justify-center animate-fade-in">
           <Button size="lg" className="text-lg px-8 py-6 group" asChild>
             <Link to="/white-paper">
               <FileText className="w-5 h-5 mr-2 group-hover:animate-bounce" />
               Read White Paper
             </Link>
-          </Button>
-          
-          <Button 
-            variant="outline" 
-            size="lg" 
-            className="text-lg px-8 py-6 group"
-            asChild
-          >
-            <a href="https://github.com/openstrengths" target="_blank" rel="noopener noreferrer">
-              <Github className="w-5 h-5 mr-2 group-hover:animate-pulse" />
-              Star on GitHub
-            </a>
           </Button>
         </div>
       </div>
