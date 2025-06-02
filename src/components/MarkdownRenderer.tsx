@@ -1,4 +1,3 @@
-
 import { Button } from '@/components/ui/button';
 
 interface MarkdownRendererProps {
@@ -90,16 +89,31 @@ const MarkdownRenderer = ({ content, frontmatter }: MarkdownRendererProps) => {
           listType = 'ol';
         }
         
-        // Calculate depth based on content, not just indentation
+        // Calculate depth based on content type
         let depth = 0;
         if (isSubNumberedItem || (isBulletItem && indent > 0)) {
           depth = 1;
+        }
+        
+        // Special case: if we have a numbered item (like "5.") after sub-items,
+        // it should be at depth 0 regardless of previous context
+        if (isNumberedItem && !isSubNumberedItem) {
+          depth = 0;
         }
         
         // Close lists that are deeper than current depth
         while (listStack.length > 0 && listStack[listStack.length - 1].depth > depth) {
           const closingList = listStack.pop()!;
           result.push(`</${closingList.type}>`);
+        }
+        
+        // If we're transitioning back to main items (depth 0) after sub-items,
+        // close all remaining lists
+        if (depth === 0 && listStack.length > 0) {
+          while (listStack.length > 0) {
+            const closingList = listStack.pop()!;
+            result.push(`</${closingList.type}>`);
+          }
         }
         
         // Check if we need to open a new list
