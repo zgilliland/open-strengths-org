@@ -84,9 +84,9 @@ const MarkdownRenderer = ({ content, frontmatter }: MarkdownRendererProps) => {
       const isListItem = isNumberedItem || isBulletItem;
       
       if (isListItem) {
-        // Determine list type - sub-numbered items should be treated as ordered lists
+        // Determine list type - sub-numbered items should be treated as unordered lists to preserve their numbering
         let listType: 'ol' | 'ul' = 'ul';
-        if (isNumberedItem || isSubNumberedItem) {
+        if (isNumberedItem && !isSubNumberedItem) {
           listType = 'ol';
         }
         
@@ -110,8 +110,8 @@ const MarkdownRenderer = ({ content, frontmatter }: MarkdownRendererProps) => {
         if (needNewList) {
           // Open new list
           const className = listType === 'ol' 
-            ? (depth === 0 ? 'space-y-2 mb-4 ml-4 list-decimal' : 'space-y-1 mb-2 ml-6 list-decimal')
-            : 'space-y-1 mb-4 ml-4 list-disc';
+            ? (depth === 0 ? 'space-y-2 mb-4 ml-4 list-decimal' : 'space-y-1 mb-2 ml-6 list-none')
+            : (depth === 0 ? 'space-y-1 mb-4 ml-4 list-disc' : 'space-y-1 mb-2 ml-6 list-none');
           result.push(`<${listType} class="${className}">`);
           listStack.push({ type: listType, indent, depth });
         }
