@@ -1,4 +1,3 @@
-
 import { Button } from '@/components/ui/button';
 import { ArrowLeft, Download, Share2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -10,9 +9,14 @@ const WhitePaper = () => {
   const [frontmatter, setFrontmatter] = useState<any>({});
 
   useEffect(() => {
-    // Load the markdown content
-    fetch('/src/content/whitepaper.md')
-      .then(response => response.text())
+    // Load the markdown content from GitHub
+    fetch('https://raw.githubusercontent.com/zgilliland/OpenStrengths/7861e529132b38ce80ac1a3c9618c63c671a55a2/whitepaper.md')
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.text();
+      })
       .then(text => {
         // Parse frontmatter
         const frontmatterMatch = text.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
@@ -37,7 +41,7 @@ const WhitePaper = () => {
       })
       .catch(error => {
         console.error('Error loading markdown:', error);
-        setMarkdownContent('# Error loading content\n\nPlease try again later.');
+        setMarkdownContent('# Error loading content\n\nFailed to load the whitepaper from GitHub. Please check your internet connection and try again.');
       });
   }, []);
 
