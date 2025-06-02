@@ -1,4 +1,3 @@
-
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { Button } from '@/components/ui/button';
@@ -15,6 +14,7 @@ interface MarkdownRendererProps {
 }
 
 const MarkdownRenderer = ({ content, frontmatter }: MarkdownRendererProps) => {
+  
   const components = {
     // Custom table rendering for responsive design
     table: ({ children }: any) => (
