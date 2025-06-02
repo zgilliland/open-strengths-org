@@ -1,4 +1,3 @@
-
 import { Button } from '@/components/ui/button';
 import { useEffect } from 'react';
 
@@ -163,7 +162,6 @@ const MarkdownRenderer = ({ content, frontmatter }: MarkdownRendererProps) => {
         if (pendingSubItems.length > 0) {
           const subItemsHtml = pendingSubItems.map(item => `<li class="mb-1">${item}</li>`).join('');
           currentOrderedItem += `<ul class="space-y-1 ml-6 list-disc mt-2">${subItemsHtml}</ul>`;
-          pendingSubItems = [];
         }
         
         // Close current ordered item if we had one
@@ -202,7 +200,19 @@ const MarkdownRenderer = ({ content, frontmatter }: MarkdownRendererProps) => {
   // Simple markdown-to-HTML converter for basic content
   const convertMarkdownToHtml = (markdown: string) => {
     return markdown
-      // Headers with proper IDs for anchor navigation
+      // Headers with proper IDs for anchor navigation - process from longest to shortest
+      .replace(/^###### (.*$)/gim, (match, title) => {
+        const id = createAnchorId(title);
+        return `<h6 id="${id}" class="text-sm font-medium mb-2 mt-4">${title}</h6>`;
+      })
+      .replace(/^##### (.*$)/gim, (match, title) => {
+        const id = createAnchorId(title);
+        return `<h5 id="${id}" class="text-base font-medium mb-2 mt-4">${title}</h5>`;
+      })
+      .replace(/^#### (.*$)/gim, (match, title) => {
+        const id = createAnchorId(title);
+        return `<h4 id="${id}" class="text-lg font-semibold mb-3 mt-6">${title}</h4>`;
+      })
       .replace(/^### (.*$)/gim, (match, title) => {
         const id = createAnchorId(title);
         return `<h3 id="${id}" class="text-xl sm:text-2xl font-semibold mb-3 sm:mb-4">${title}</h3>`;
