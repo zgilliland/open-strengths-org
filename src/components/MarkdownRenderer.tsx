@@ -54,12 +54,13 @@ const MarkdownRenderer = ({ content, frontmatter }: MarkdownRendererProps) => {
     return lines.slice(startIndex).join('\n');
   };
 
-  // Completely rewritten list processing logic
+  // Fixed list processing logic to handle nested lists properly
   const processLists = (content: string) => {
     const lines = content.split('\n');
     const result: string[] = [];
     let inOrderedList = false;
-    let inUnorderedList = false;
+    let currentOrderedItem = '';
+    let pendingSubItems: string[] = [];
     
     console.log('Processing lists, first 20 lines:', lines.slice(0, 20));
     
@@ -69,7 +70,7 @@ const MarkdownRenderer = ({ content, frontmatter }: MarkdownRendererProps) => {
       
       // Skip empty lines - they don't break list continuity
       if (trimmedLine === '') {
-        if (!inOrderedList && !inUnorderedList) {
+        if (!inOrderedList) {
           result.push(line);
         }
         continue;
@@ -77,16 +78,21 @@ const MarkdownRenderer = ({ content, frontmatter }: MarkdownRendererProps) => {
       
       // Check if this is a numbered list item (like "1.", "2.", "10.")
       const numberedMatch = trimmedLine.match(/^(\d+)\.\s+(.+)$/);
-      // Check if this is a sub-item with number (like "* 3.1", "* 4.2")
-      const subNumberedMatch = trimmedLine.match(/^\*\s+(\d+\.\d+)\s+(.+)$/);
-      // Check if this is a regular bullet item
-      const bulletMatch = trimmedLine.match(/^\*\s+(.+)$/);
+      // Check if this is a sub-item with number (like "* 3.1", "* 4.2") or regular bullet
+      const subItemMatch = trimmedLine.match(/^\*\s+(.+)$/);
       
       if (numberedMatch) {
-        // Close any open unordered list
-        if (inUnorderedList) {
-          result.push('</ul>');
-          inUnorderedList = false;
+        // First, close any pending sub-items from previous numbered item
+        if (pendingSubItems.length > 0) {
+          const subItemsHtml = pendingSubItems.map(item => `<li class="mb-1">${item}</li>`).join('');
+          currentOrderedItem += `<ul class="space-y-1 ml-6 list-disc mt-2">${subItemsHtml}</ul>`;
+          pendingSubItems = [];
+        }
+        
+        // Close previous ordered item if we had one
+        if (currentOrderedItem) {
+          result.push(`<li class="mb-2">${currentOrderedItem}</li>`);
+          currentOrderedItem = '';
         }
         
         // Open ordered list if not already open
@@ -102,56 +108,55 @@ const MarkdownRenderer = ({ content, frontmatter }: MarkdownRendererProps) => {
           .replace(/\*(.*?)\*/g, '<em class="italic">$1</em>')
           .replace(/`([^`]*)`/g, '<code class="bg-gray-100 px-2 py-1 rounded text-sm font-mono">$1</code>');
         
-        result.push(`<li class="mb-1">${processedContent}</li>`);
+        currentOrderedItem = processedContent;
         
-      } else if (subNumberedMatch || (bulletMatch && !numberedMatch)) {
-        // Close any open ordered list
-        if (inOrderedList) {
-          result.push('</ol>');
-          inOrderedList = false;
-        }
-        
-        // Open unordered list if not already open
-        if (!inUnorderedList) {
-          result.push('<ul class="space-y-1 mb-2 ml-6 list-disc">');
-          inUnorderedList = true;
-        }
-        
-        let content = '';
-        if (subNumberedMatch) {
-          content = `${subNumberedMatch[1]} ${subNumberedMatch[2]}`;
-        } else if (bulletMatch) {
-          content = bulletMatch[1];
-        }
-        
+      } else if (subItemMatch && inOrderedList) {
+        // This is a sub-item for the current numbered item
+        const content = subItemMatch[1];
         const processedContent = content
           .replace(/\[([^\]]*)\]\(([^\)]*)\)/g, '<a href="$2" class="text-blue-600 hover:underline">$1</a>')
           .replace(/\*\*(.*?)\*\*/g, '<strong class="font-semibold">$1</strong>')
           .replace(/\*(.*?)\*/g, '<em class="italic">$1</em>')
           .replace(/`([^`]*)`/g, '<code class="bg-gray-100 px-2 py-1 rounded text-sm font-mono">$1</code>');
         
-        result.push(`<li class="mb-1">${processedContent}</li>`);
+        pendingSubItems.push(processedContent);
         
       } else {
-        // Close any open lists when we hit non-list content
+        // Close any pending sub-items
+        if (pendingSubItems.length > 0) {
+          const subItemsHtml = pendingSubItems.map(item => `<li class="mb-1">${item}</li>`).join('');
+          currentOrderedItem += `<ul class="space-y-1 ml-6 list-disc mt-2">${subItemsHtml}</ul>`;
+          pendingSubItems = [];
+        }
+        
+        // Close current ordered item if we had one
+        if (currentOrderedItem) {
+          result.push(`<li class="mb-2">${currentOrderedItem}</li>`);
+          currentOrderedItem = '';
+        }
+        
+        // Close ordered list when we hit non-list content
         if (inOrderedList) {
           result.push('</ol>');
           inOrderedList = false;
         }
-        if (inUnorderedList) {
-          result.push('</ul>');
-          inUnorderedList = false;
-        }
+        
         result.push(line);
       }
     }
     
-    // Close any remaining open lists
+    // Close any remaining pending items and lists
+    if (pendingSubItems.length > 0) {
+      const subItemsHtml = pendingSubItems.map(item => `<li class="mb-1">${item}</li>`).join('');
+      currentOrderedItem += `<ul class="space-y-1 ml-6 list-disc mt-2">${subItemsHtml}</ul>`;
+    }
+    
+    if (currentOrderedItem) {
+      result.push(`<li class="mb-2">${currentOrderedItem}</li>`);
+    }
+    
     if (inOrderedList) {
       result.push('</ol>');
-    }
-    if (inUnorderedList) {
-      result.push('</ul>');
     }
     
     return result.join('\n');
