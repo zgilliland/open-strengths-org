@@ -55,6 +55,73 @@ const MarkdownRenderer = ({ content, frontmatter }: MarkdownRendererProps) => {
     return lines.slice(startIndex).join('\n');
   };
 
+  // Process nested lists properly
+  const processLists = (content: string) => {
+    const lines = content.split('\n');
+    const result: string[] = [];
+    let inList = false;
+    let listStack: { type: 'ol' | 'ul', indent: number }[] = [];
+    
+    for (let i = 0; i < lines.length; i++) {
+      const line = lines[i];
+      const trimmedLine = line.trim();
+      
+      // Count leading spaces for indentation
+      const indent = line.length - line.trimStart().length;
+      
+      // Check if this is a list item
+      const isNumberedItem = /^\d+\.\s/.test(trimmedLine);
+      const isBulletItem = /^[\*\-]\s/.test(trimmedLine);
+      const isListItem = isNumberedItem || isBulletItem;
+      
+      if (isListItem) {
+        const listType = isNumberedItem ? 'ol' : 'ul';
+        
+        // Close deeper lists if we're at a shallower level
+        while (listStack.length > 0 && listStack[listStack.length - 1].indent >= indent) {
+          const closingList = listStack.pop()!;
+          result.push(`</${closingList.type}>`);
+        }
+        
+        // Open a new list if needed
+        if (listStack.length === 0 || listStack[listStack.length - 1].type !== listType || listStack[listStack.length - 1].indent < indent) {
+          const className = listType === 'ol' ? 'space-y-2 mb-4 ml-4 list-decimal' : 'space-y-1 mb-4 ml-4 list-disc';
+          result.push(`<${listType} class="${className}">`);
+          listStack.push({ type: listType, indent });
+        }
+        
+        // Extract the content after the list marker
+        let itemContent = trimmedLine.replace(/^[\d]+\.\s|^[\*\-]\s/, '');
+        
+        // Process inline markdown in the list item
+        itemContent = itemContent
+          .replace(/\[([^\]]*)\]\(([^\)]*)\)/g, '<a href="$2" class="text-blue-600 hover:underline">$1</a>')
+          .replace(/\*\*(.*?)\*\*/g, '<strong class="font-semibold">$1</strong>')
+          .replace(/\*(.*?)\*/g, '<em class="italic">$1</em>')
+          .replace(/`([^`]*)`/g, '<code class="bg-gray-100 px-2 py-1 rounded text-sm font-mono">$1</code>');
+        
+        result.push(`<li class="mb-1">${itemContent}</li>`);
+        inList = true;
+      } else {
+        // Close all open lists when we hit non-list content
+        while (listStack.length > 0) {
+          const closingList = listStack.pop()!;
+          result.push(`</${closingList.type}>`);
+        }
+        inList = false;
+        result.push(line);
+      }
+    }
+    
+    // Close any remaining open lists
+    while (listStack.length > 0) {
+      const closingList = listStack.pop()!;
+      result.push(`</${closingList.type}>`);
+    }
+    
+    return result.join('\n');
+  };
+
   // Simple markdown-to-HTML converter for basic content
   const convertMarkdownToHtml = (markdown: string) => {
     return markdown
@@ -69,9 +136,6 @@ const MarkdownRenderer = ({ content, frontmatter }: MarkdownRendererProps) => {
       .replace(/\[([^\]]*)\]\(([^\)]*)\)/gim, '<a href="$2" class="text-blue-600 hover:underline">$1</a>')
       // Code
       .replace(/`([^`]*)`/gim, '<code class="bg-gray-100 px-2 py-1 rounded text-sm font-mono">$1</code>')
-      // Lists (basic)
-      .replace(/^\- (.*$)/gim, '<li class="mb-1">$1</li>')
-      .replace(/^(\d+)\. (.*$)/gim, '<li class="mb-1">$1. $2</li>')
       // Line breaks - convert double line breaks to paragraph breaks
       .replace(/\n\n/gim, '</p><p class="mb-4 text-sm sm:text-base leading-relaxed">');
   };
@@ -138,23 +202,17 @@ const MarkdownRenderer = ({ content, frontmatter }: MarkdownRendererProps) => {
   // Process the content
   const cleanedContent = cleanContent(content);
   const processedContent = convertTablesToHtml(cleanedContent);
-  const htmlContent = convertMarkdownToHtml(processedContent);
+  const listProcessedContent = processLists(processedContent);
+  const htmlContent = convertMarkdownToHtml(listProcessedContent);
 
-  // Wrap lists properly
-  const finalContent = htmlContent
-    .replace(/(<li[^>]*>.*?<\/li>)/gims, (match) => {
-      if (!match.includes('<ul>') && !match.includes('<ol>')) {
-        return `<ul class="space-y-1 mb-4 ml-4 list-disc">${match}</ul>`;
-      }
-      return match;
-    });
+  const finalContent = htmlContent;
 
   return (
     <div className="prose prose-sm sm:prose-base lg:prose-lg max-w-none">
       <div 
         className="markdown-content"
         dangerouslySetInnerHTML={{ 
-          __html: `<p class="mb-4 text-sm sm:text-base leading-relaxed">${finalContent}</p>` 
+          __html: `<div class="text-sm sm:text-base leading-relaxed">${finalContent}</div>` 
         }} 
       />
       
