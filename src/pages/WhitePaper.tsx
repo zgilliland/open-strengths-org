@@ -1,4 +1,3 @@
-
 import { Button } from '@/components/ui/button';
 import { ArrowLeft, Download } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -6,7 +5,6 @@ import MarkdownRenderer from '@/components/MarkdownRenderer';
 import Logo from '@/components/ui/Logo';
 import { useEffect, useState } from 'react';
 import { Skeleton } from '@/components/ui/skeleton';
-import { Separator } from '@/components/ui/separator';
 
 const WhitePaper = () => {
   const [markdownContent, setMarkdownContent] = useState('');
@@ -87,8 +85,6 @@ const WhitePaper = () => {
               <div className="w-32 h-9 bg-gray-200 rounded animate-pulse" />
             </div>
             
-            <Separator className="my-0" />
-            
             {/* Title Section */}
             <div className="py-8 text-center">
               <Skeleton className="h-12 w-3/4 mx-auto mb-4" />
@@ -145,8 +141,6 @@ const WhitePaper = () => {
               <span className="sm:hidden">PDF</span>
             </Button>
           </div>
-          
-          <Separator className="my-0" />
           
           {/* Error Display */}
           {error && (
