@@ -1,8 +1,8 @@
-
 import { Button } from '@/components/ui/button';
-import { ArrowLeft, Download, Share2 } from 'lucide-react';
+import { ArrowLeft, Download } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import MarkdownRenderer from '@/components/MarkdownRenderer';
+import Logo from '@/components/ui/Logo';
 import { useEffect, useState } from 'react';
 import { Skeleton } from '@/components/ui/skeleton';
 
@@ -11,6 +11,11 @@ const WhitePaper = () => {
   const [frontmatter, setFrontmatter] = useState<any>({});
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+
+  const handleDownloadPDF = () => {
+    // Use the browser's print functionality to generate PDF
+    window.print();
+  };
 
   useEffect(() => {
     // Always fetch from the correct GitHub repository to get the latest content
@@ -72,22 +77,19 @@ const WhitePaper = () => {
         <div className="bg-gray-50 border-b border-gray-200">
           <div className="max-w-4xl mx-auto px-4 py-6">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-4 gap-4">
-              <Button variant="ghost" asChild>
-                <Link to="/" className="flex items-center gap-2 self-start">
-                  <ArrowLeft className="w-4 h-4" />
-                  Back to Home
-                </Link>
-              </Button>
-              <div className="flex flex-col sm:flex-row gap-2">
-                <Button variant="outline" size="sm" className="w-full sm:w-auto">
-                  <Download className="w-4 h-4 mr-2" />
-                  Download PDF
+              <div className="flex items-center gap-4">
+                <Button variant="ghost" asChild>
+                  <Link to="/" className="flex items-center gap-2">
+                    <ArrowLeft className="w-4 h-4" />
+                    Back to Home
+                  </Link>
                 </Button>
-                <Button variant="outline" size="sm" className="w-full sm:w-auto">
-                  <Share2 className="w-4 h-4 mr-2" />
-                  Share
-                </Button>
+                <Logo size="md" variant="full" />
               </div>
+              <Button variant="outline" size="sm" className="w-full sm:w-auto">
+                <Download className="w-4 h-4 mr-2" />
+                Download PDF
+              </Button>
             </div>
             <Skeleton className="h-8 w-3/4 mb-2" />
             <Skeleton className="h-6 w-1/2 mb-1" />
@@ -116,22 +118,19 @@ const WhitePaper = () => {
       <div className="bg-gray-50 border-b border-gray-200">
         <div className="max-w-4xl mx-auto px-4 py-6">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-4 gap-4">
-            <Button variant="ghost" asChild>
-              <Link to="/" className="flex items-center gap-2 self-start">
-                <ArrowLeft className="w-4 h-4" />
-                Back to Home
-              </Link>
-            </Button>
-            <div className="flex flex-col sm:flex-row gap-2">
-              <Button variant="outline" size="sm" className="w-full sm:w-auto">
-                <Download className="w-4 h-4 mr-2" />
-                Download PDF
+            <div className="flex items-center gap-4">
+              <Button variant="ghost" asChild>
+                <Link to="/" className="flex items-center gap-2">
+                  <ArrowLeft className="w-4 h-4" />
+                  Back to Home
+                </Link>
               </Button>
-              <Button variant="outline" size="sm" className="w-full sm:w-auto">
-                <Share2 className="w-4 h-4 mr-2" />
-                Share
-              </Button>
+              <Logo size="md" variant="full" />
             </div>
+            <Button variant="outline" size="sm" className="w-full sm:w-auto" onClick={handleDownloadPDF}>
+              <Download className="w-4 h-4 mr-2" />
+              Download PDF
+            </Button>
           </div>
           {error && (
             <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-4">
