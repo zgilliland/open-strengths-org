@@ -21,64 +21,39 @@ const Logo: React.FC<LogoProps> = ({
 
   const SixPetalIcon = ({ className }: { className?: string }) => (
     <svg 
-      viewBox="0 0 32 32" 
+      viewBox="-250 -250 500 500" 
       className={className}
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
       <defs>
-        <linearGradient id="centerGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#4f46e5" />
-          <stop offset="100%" stopColor="#7c3aed" />
-        </linearGradient>
-        <linearGradient id="petalGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#6366f1" stopOpacity="0.7" />
-          <stop offset="100%" stopColor="#8b5cf6" stopOpacity="0.5" />
-        </linearGradient>
+        <style>
+          {`
+            .petal-insight { fill: #8B5FBF; opacity: 0.9; }
+            .petal-drive { fill: #E53E3E; opacity: 0.9; }
+            .petal-connection { fill: #38A169; opacity: 0.9; }
+            .petal-influence { fill: #DD6B20; opacity: 0.9; }
+            .petal-creativity { fill: #D69E2E; opacity: 0.9; }
+            .petal-stability { fill: #3182CE; opacity: 0.9; }
+            .center-circle { fill: hsl(222.2, 47.4%, 11.2%); opacity: 0.9; }
+            .seed { fill: hsl(210, 40%, 96.1%); }
+          `}
+        </style>
       </defs>
-      
-      {/* Center circle */}
-      <circle cx="16" cy="16" r="5.12" fill="url(#centerGradient)" />
-      
-      {/* Six overlapping petals */}
-      <g>
-        <ellipse 
-          rx="3.84" 
-          ry="7.68" 
-          fill="url(#petalGradient)" 
-          transform="rotate(0 16 16) translate(16 9.6)" 
-        />
-        <ellipse 
-          rx="3.84" 
-          ry="7.68" 
-          fill="url(#petalGradient)" 
-          transform="rotate(60 16 16) translate(16 9.6)" 
-        />
-        <ellipse 
-          rx="3.84" 
-          ry="7.68" 
-          fill="url(#petalGradient)" 
-          transform="rotate(120 16 16) translate(16 9.6)" 
-        />
-        <ellipse 
-          rx="3.84" 
-          ry="7.68" 
-          fill="url(#petalGradient)" 
-          transform="rotate(180 16 16) translate(16 9.6)" 
-        />
-        <ellipse 
-          rx="3.84" 
-          ry="7.68" 
-          fill="url(#petalGradient)" 
-          transform="rotate(240 16 16) translate(16 9.6)" 
-        />
-        <ellipse 
-          rx="3.84" 
-          ry="7.68" 
-          fill="url(#petalGradient)" 
-          transform="rotate(300 16 16) translate(16 9.6)" 
-        />
-      </g>
+
+      {/* Center circle (Primary Dark Navy) */}
+      <circle className="center-circle" cx="0" cy="0" r="80" />
+
+      {/* Six colored petals for each strength domain */}
+      <ellipse className="petal-insight" rx="60" ry="120" transform="rotate(0) translate(0, -100)" />
+      <ellipse className="petal-drive" rx="60" ry="120" transform="rotate(60) translate(0, -100)" />
+      <ellipse className="petal-connection" rx="60" ry="120" transform="rotate(120) translate(0, -100)" />
+      <ellipse className="petal-influence" rx="60" ry="120" transform="rotate(180) translate(0, -100)" />
+      <ellipse className="petal-creativity" rx="60" ry="120" transform="rotate(240) translate(0, -100)" />
+      <ellipse className="petal-stability" rx="60" ry="120" transform="rotate(300) translate(0, -100)" />
+
+      {/* Small central "seed" (light grey) */}
+      <circle className="seed" cx="0" cy="0" r="15" />
     </svg>
   );
 
