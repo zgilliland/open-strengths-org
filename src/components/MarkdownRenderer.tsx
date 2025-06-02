@@ -59,8 +59,7 @@ const MarkdownRenderer = ({ content, frontmatter }: MarkdownRendererProps) => {
   const processLists = (content: string) => {
     const lines = content.split('\n');
     const result: string[] = [];
-    let inList = false;
-    let listStack: { type: 'ol' | 'ul', indent: number }[] = [];
+    let currentList: { type: 'ol' | 'ul', indent: number } | null = null;
     
     for (let i = 0; i < lines.length; i++) {
       const line = lines[i];
@@ -72,26 +71,33 @@ const MarkdownRenderer = ({ content, frontmatter }: MarkdownRendererProps) => {
       // Check if this is a list item
       const isNumberedItem = /^\d+\.\s/.test(trimmedLine);
       const isBulletItem = /^[\*\-]\s/.test(trimmedLine);
+      const isSubItem = /^\*\s\d+\.\d+/.test(trimmedLine); // Handle "* 3.1", "* 3.2" format
       const isListItem = isNumberedItem || isBulletItem;
       
       if (isListItem) {
         const listType = isNumberedItem ? 'ol' : 'ul';
         
-        // Close deeper lists if we're at a shallower level
-        while (listStack.length > 0 && listStack[listStack.length - 1].indent >= indent) {
-          const closingList = listStack.pop()!;
-          result.push(`</${closingList.type}>`);
-        }
-        
-        // Open a new list if needed
-        if (listStack.length === 0 || listStack[listStack.length - 1].type !== listType || listStack[listStack.length - 1].indent < indent) {
+        // If we're starting a new list or switching list types
+        if (!currentList || currentList.type !== listType || currentList.indent !== indent) {
+          // Close previous list if exists
+          if (currentList) {
+            result.push(`</${currentList.type}>`);
+          }
+          
+          // Open new list
           const className = listType === 'ol' ? 'space-y-2 mb-4 ml-4 list-decimal' : 'space-y-1 mb-4 ml-4 list-disc';
           result.push(`<${listType} class="${className}">`);
-          listStack.push({ type: listType, indent });
+          currentList = { type: listType, indent };
         }
         
         // Extract the content after the list marker
         let itemContent = trimmedLine.replace(/^[\d]+\.\s|^[\*\-]\s/, '');
+        
+        // Special handling for sub-items like "* 3.1 Something"
+        if (isSubItem) {
+          // For sub-items, we want to preserve the numbering
+          itemContent = trimmedLine.replace(/^\*\s/, '');
+        }
         
         // Process inline markdown in the list item
         itemContent = itemContent
@@ -101,22 +107,19 @@ const MarkdownRenderer = ({ content, frontmatter }: MarkdownRendererProps) => {
           .replace(/`([^`]*)`/g, '<code class="bg-gray-100 px-2 py-1 rounded text-sm font-mono">$1</code>');
         
         result.push(`<li class="mb-1">${itemContent}</li>`);
-        inList = true;
       } else {
-        // Close all open lists when we hit non-list content
-        while (listStack.length > 0) {
-          const closingList = listStack.pop()!;
-          result.push(`</${closingList.type}>`);
+        // Close current list when we hit non-list content
+        if (currentList) {
+          result.push(`</${currentList.type}>`);
+          currentList = null;
         }
-        inList = false;
         result.push(line);
       }
     }
     
-    // Close any remaining open lists
-    while (listStack.length > 0) {
-      const closingList = listStack.pop()!;
-      result.push(`</${closingList.type}>`);
+    // Close any remaining open list
+    if (currentList) {
+      result.push(`</${currentList.type}>`);
     }
     
     return result.join('\n');
