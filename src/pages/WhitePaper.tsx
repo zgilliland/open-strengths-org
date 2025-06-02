@@ -1,3 +1,4 @@
+
 import { Button } from '@/components/ui/button';
 import { ArrowLeft, Download } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -74,18 +75,20 @@ const WhitePaper = () => {
     return (
       <div className="min-h-screen bg-white">
         {/* Header Skeleton */}
-        <div className="bg-white border-b border-gray-200 shadow-sm">
+        <div className="bg-white">
           <div className="max-w-6xl mx-auto px-4 sm:px-6">
             {/* Navigation Bar */}
-            <div className="flex items-center justify-between py-4">
+            <div className="flex items-center justify-between py-4 border-b border-gray-200 shadow-sm">
               <div className="flex items-center gap-4">
                 <div className="w-8 h-8 bg-gray-200 rounded animate-pulse" />
                 <div className="w-32 h-6 bg-gray-200 rounded animate-pulse" />
               </div>
               <div className="w-32 h-9 bg-gray-200 rounded animate-pulse" />
             </div>
+          </div>
             
-            {/* Title Section */}
+          {/* Title Section */}
+          <div className="max-w-6xl mx-auto px-4 sm:px-6">
             <div className="py-8 text-center">
               <Skeleton className="h-12 w-3/4 mx-auto mb-4" />
               <Skeleton className="h-6 w-1/2 mx-auto mb-3" />
@@ -116,10 +119,10 @@ const WhitePaper = () => {
   return (
     <div className="min-h-screen bg-white">
       {/* Header */}
-      <div className="bg-white border-b border-gray-200 shadow-sm">
+      <div className="bg-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           {/* Navigation Bar */}
-          <div className="flex items-center justify-between py-4">
+          <div className="flex items-center justify-between py-4 border-b border-gray-200 shadow-sm">
             <div className="flex items-center gap-4">
               <Logo size="sm" variant="icon" />
               <Button variant="ghost" size="sm" asChild className="text-gray-600 hover:text-gray-900 hover:bg-gray-50">
@@ -141,15 +144,19 @@ const WhitePaper = () => {
               <span className="sm:hidden">PDF</span>
             </Button>
           </div>
+        </div>
           
-          {/* Error Display */}
-          {error && (
+        {/* Error Display */}
+        {error && (
+          <div className="max-w-6xl mx-auto px-4 sm:px-6">
             <div className="bg-red-50 border border-red-200 rounded-lg p-4 my-4">
               <p className="text-red-800 text-sm">{error}</p>
             </div>
-          )}
-          
-          {/* Title Section */}
+          </div>
+        )}
+        
+        {/* Title Section */}
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <div className="py-8 text-center">
             {frontmatter.title && (
               <>
