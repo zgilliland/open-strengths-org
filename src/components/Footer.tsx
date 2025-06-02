@@ -42,7 +42,7 @@ const Footer = () => {
         <div className="border-t border-gray-800 mt-8 pt-8 text-center">
           <p className="text-gray-400 text-sm">
             Made possible by contributors around the world. 
-            <a href="https://github.com/openstrengths" className="text-primary hover:text-primary/80 ml-1">
+            <a href="https://github.com/zgilliland/OpenStrengths" className="text-primary hover:text-primary/80 ml-1">
               Join us on GitHub →
             </a>
           </p>

@@ -208,8 +208,8 @@ const WhitePaper = () => {
           </p>
           <p>
             For the latest version and updates, visit: 
-            <a href="https://github.com/openstrengths" className="text-blue-600 hover:underline ml-1">
-              github.com/openstrengths
+            <a href="https://github.com/zgilliland/OpenStrengths" className="text-blue-600 hover:underline ml-1">
+              github.com/zgilliland/OpenStrengths
             </a>
           </p>
         </footer>
