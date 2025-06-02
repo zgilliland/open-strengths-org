@@ -1,8 +1,6 @@
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Button } from '@/components/ui/button';
-import { ExternalLink } from 'lucide-react';
 
 const UnderTheHood = () => {
   return (
@@ -132,17 +130,6 @@ const UnderTheHood = () => {
                 </Card>
               </TabsContent>
             </Tabs>
-
-            <div className="flex gap-4 mt-6">
-              <Button variant="outline" className="flex items-center gap-2">
-                <ExternalLink className="w-4 h-4" />
-                View Taxonomy
-              </Button>
-              <Button variant="outline" className="flex items-center gap-2">
-                <ExternalLink className="w-4 h-4" />
-                See Scorer
-              </Button>
-            </div>
           </div>
         </div>
       </div>
