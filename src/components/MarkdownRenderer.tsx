@@ -13,6 +13,48 @@ interface MarkdownRendererProps {
 }
 
 const MarkdownRenderer = ({ content, frontmatter }: MarkdownRendererProps) => {
+  // Remove duplicate header content that's already shown in the page header
+  const cleanContent = (markdown: string) => {
+    const lines = markdown.split('\n');
+    let startIndex = 0;
+    
+    // Skip lines that duplicate the header information
+    for (let i = 0; i < lines.length; i++) {
+      const line = lines[i].trim();
+      
+      // Skip the main title if it matches frontmatter
+      if (line.startsWith('# ') && frontmatter?.title && line.includes(frontmatter.title)) {
+        startIndex = i + 1;
+        continue;
+      }
+      
+      // Skip subtitle lines (italic text with subtitle content)
+      if (line.startsWith('### ') && frontmatter?.subtitle && line.includes('Open‑Source Framework')) {
+        startIndex = i + 1;
+        continue;
+      }
+      
+      // Skip the version/type line that's already in header
+      if (line.includes('White Paper') && line.includes('Version') && frontmatter?.version) {
+        startIndex = i + 1;
+        continue;
+      }
+      
+      // Skip empty lines and separator lines at the beginning
+      if (line === '' || line === '---') {
+        startIndex = i + 1;
+        continue;
+      }
+      
+      // Once we hit actual content, stop skipping
+      if (line.length > 0 && !line.startsWith('#') && line !== '---') {
+        break;
+      }
+    }
+    
+    return lines.slice(startIndex).join('\n');
+  };
+
   // Simple markdown-to-HTML converter for basic content
   const convertMarkdownToHtml = (markdown: string) => {
     return markdown
@@ -94,7 +136,8 @@ const MarkdownRenderer = ({ content, frontmatter }: MarkdownRendererProps) => {
   };
 
   // Process the content
-  const processedContent = convertTablesToHtml(content);
+  const cleanedContent = cleanContent(content);
+  const processedContent = convertTablesToHtml(cleanedContent);
   const htmlContent = convertMarkdownToHtml(processedContent);
 
   // Wrap lists properly
