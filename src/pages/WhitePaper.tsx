@@ -1,3 +1,4 @@
+
 import { Button } from '@/components/ui/button';
 import { ArrowLeft, Download, Share2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -68,15 +69,23 @@ const WhitePaper = () => {
               </Button>
             </div>
           </div>
-          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-2">
-            {frontmatter.title || 'OpenStrengths'}
-          </h1>
-          <p className="text-lg sm:text-xl text-gray-600 italic mb-1">
-            {frontmatter.subtitle || 'An Open‑Source Framework for Mapping Human Potential'}
-          </p>
-          <p className="text-sm text-gray-500">
-            {frontmatter.type || 'White Paper'} · Version {frontmatter.version || '0.1.1'} ({frontmatter.date || 'May 2025'})
-          </p>
+          {frontmatter.title && (
+            <>
+              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-2">
+                {frontmatter.title}
+              </h1>
+              {frontmatter.subtitle && (
+                <p className="text-lg sm:text-xl text-gray-600 italic mb-1">
+                  {frontmatter.subtitle}
+                </p>
+              )}
+              <p className="text-sm text-gray-500">
+                {frontmatter.type && `${frontmatter.type}`}
+                {frontmatter.version && ` · Version ${frontmatter.version}`}
+                {frontmatter.date && ` (${frontmatter.date})`}
+              </p>
+            </>
+          )}
         </div>
       </div>
 
@@ -86,9 +95,12 @@ const WhitePaper = () => {
         
         {/* Footer */}
         <footer className="border-t border-gray-200 pt-6 sm:pt-8 mt-8 sm:mt-12 text-center text-xs sm:text-sm text-gray-600">
-          <p className="mb-2">
-            <strong>OpenStrengths White Paper v{frontmatter.version || '0.1.1'}</strong> • {frontmatter.date || 'May 2025'}
-          </p>
+          {frontmatter.version && (
+            <p className="mb-2">
+              <strong>OpenStrengths White Paper v{frontmatter.version}</strong>
+              {frontmatter.date && ` • ${frontmatter.date}`}
+            </p>
+          )}
           <p className="mb-2">
             Licensed under Creative Commons Attribution 4.0 International License
           </p>
