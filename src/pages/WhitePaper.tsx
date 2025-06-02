@@ -21,7 +21,9 @@ const WhitePaper = () => {
       
       try {
         console.log('Fetching whitepaper from GitHub repository...');
-        const response = await fetch('https://raw.githubusercontent.com/zgilliland/OpenStrengths/main/whitepaper.md');
+        // Add cache busting with timestamp to force fresh fetch
+        const cacheBuster = new Date().getTime();
+        const response = await fetch(`https://raw.githubusercontent.com/zgilliland/OpenStrengths/main/whitepaper.md?cb=${cacheBuster}`);
         
         if (!response.ok) {
           throw new Error(`GitHub fetch failed: ${response.status} ${response.statusText}`);
