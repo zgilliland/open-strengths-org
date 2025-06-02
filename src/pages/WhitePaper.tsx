@@ -6,6 +6,7 @@ import MarkdownRenderer from '@/components/MarkdownRenderer';
 import Logo from '@/components/ui/Logo';
 import { useEffect, useState } from 'react';
 import { Skeleton } from '@/components/ui/skeleton';
+import { Separator } from '@/components/ui/separator';
 
 const WhitePaper = () => {
   const [markdownContent, setMarkdownContent] = useState('');
@@ -75,28 +76,28 @@ const WhitePaper = () => {
     return (
       <div className="min-h-screen bg-white">
         {/* Header Skeleton */}
-        <div className="bg-gradient-to-r from-gray-50 to-gray-100 border-b border-gray-200">
-          <div className="max-w-6xl mx-auto px-6 py-8">
+        <div className="bg-white border-b border-gray-200 shadow-sm">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6">
             {/* Navigation Bar */}
-            <div className="flex items-center justify-between mb-8">
-              <Button variant="ghost" size="sm" className="text-gray-600 hover:text-gray-900">
-                <ArrowLeft className="w-4 h-4 mr-2" />
-                Back to Home
-              </Button>
-              <Button variant="default" size="sm" className="bg-blue-600 hover:bg-blue-700">
-                <Download className="w-4 h-4 mr-2" />
-                Download PDF
-              </Button>
+            <div className="flex items-center justify-between py-4">
+              <div className="flex items-center gap-4">
+                <div className="w-8 h-8 bg-gray-200 rounded animate-pulse" />
+                <div className="w-32 h-6 bg-gray-200 rounded animate-pulse" />
+              </div>
+              <div className="w-32 h-9 bg-gray-200 rounded animate-pulse" />
             </div>
             
-            {/* Logo and Title Area */}
-            <div className="text-center">
-              <div className="flex justify-center mb-6">
-                <Logo size="lg" variant="full" />
+            <Separator className="my-0" />
+            
+            {/* Title Section */}
+            <div className="py-8 text-center">
+              <Skeleton className="h-12 w-3/4 mx-auto mb-4" />
+              <Skeleton className="h-6 w-1/2 mx-auto mb-3" />
+              <div className="flex justify-center gap-2">
+                <Skeleton className="h-6 w-20" />
+                <Skeleton className="h-6 w-24" />
+                <Skeleton className="h-6 w-28" />
               </div>
-              <Skeleton className="h-10 w-3/4 mx-auto mb-3" />
-              <Skeleton className="h-6 w-1/2 mx-auto mb-2" />
-              <Skeleton className="h-4 w-1/3 mx-auto" />
             </div>
           </div>
         </div>
@@ -119,60 +120,68 @@ const WhitePaper = () => {
   return (
     <div className="min-h-screen bg-white">
       {/* Header */}
-      <div className="bg-gradient-to-r from-gray-50 to-gray-100 border-b border-gray-200">
-        <div className="max-w-6xl mx-auto px-6 py-8">
+      <div className="bg-white border-b border-gray-200 shadow-sm">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
           {/* Navigation Bar */}
-          <div className="flex items-center justify-between mb-8">
-            <Button variant="ghost" size="sm" asChild className="text-gray-600 hover:text-gray-900 hover:bg-white/50">
-              <Link to="/" className="flex items-center">
-                <ArrowLeft className="w-4 h-4 mr-2" />
-                Back to Home
-              </Link>
-            </Button>
+          <div className="flex items-center justify-between py-4">
+            <div className="flex items-center gap-4">
+              <Logo size="sm" variant="icon" />
+              <Button variant="ghost" size="sm" asChild className="text-gray-600 hover:text-gray-900 hover:bg-gray-50">
+                <Link to="/" className="flex items-center gap-2">
+                  <ArrowLeft className="w-4 h-4" />
+                  <span className="hidden sm:inline">Back to Home</span>
+                  <span className="sm:hidden">Back</span>
+                </Link>
+              </Button>
+            </div>
             <Button 
               variant="default" 
               size="sm" 
               onClick={handleDownloadPDF}
-              className="bg-blue-600 hover:bg-blue-700 text-white shadow-sm"
+              className="bg-blue-600 hover:bg-blue-700 text-white"
             >
               <Download className="w-4 h-4 mr-2" />
-              Download PDF
+              <span className="hidden sm:inline">Download PDF</span>
+              <span className="sm:hidden">PDF</span>
             </Button>
           </div>
           
+          <Separator className="my-0" />
+          
           {/* Error Display */}
           {error && (
-            <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-6 max-w-4xl mx-auto">
+            <div className="bg-red-50 border border-red-200 rounded-lg p-4 my-4">
               <p className="text-red-800 text-sm">{error}</p>
             </div>
           )}
           
-          {/* Logo and Title Area */}
-          <div className="text-center">
-            <div className="flex justify-center mb-6">
-              <Logo size="lg" variant="full" />
-            </div>
+          {/* Title Section */}
+          <div className="py-8 text-center">
             {frontmatter.title && (
               <>
                 <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 leading-tight">
                   {frontmatter.title}
                 </h1>
                 {frontmatter.subtitle && (
-                  <p className="text-xl sm:text-2xl text-gray-600 italic mb-3 max-w-3xl mx-auto">
+                  <p className="text-lg sm:text-xl text-gray-600 mb-4 max-w-3xl mx-auto">
                     {frontmatter.subtitle}
                   </p>
                 )}
-                <div className="flex flex-wrap items-center justify-center gap-2 text-sm text-gray-500">
+                <div className="flex flex-wrap items-center justify-center gap-2 text-sm">
                   {frontmatter.type && (
-                    <span className="bg-gray-200 px-3 py-1 rounded-full">{frontmatter.type}</span>
+                    <span className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full font-medium">
+                      {frontmatter.type}
+                    </span>
                   )}
                   {frontmatter.version && (
-                    <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full">
+                    <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full font-medium">
                       Version {frontmatter.version}
                     </span>
                   )}
                   {frontmatter.date && (
-                    <span className="text-gray-600">{frontmatter.date}</span>
+                    <span className="text-gray-600 px-3 py-1">
+                      {frontmatter.date}
+                    </span>
                   )}
                 </div>
               </>
