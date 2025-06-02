@@ -1,3 +1,4 @@
+
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { Button } from '@/components/ui/button';
@@ -14,7 +15,6 @@ interface MarkdownRendererProps {
 }
 
 const MarkdownRenderer = ({ content, frontmatter }: MarkdownRendererProps) => {
-  
   const components = {
     // Custom table rendering for responsive design
     table: ({ children }: any) => (
@@ -27,7 +27,6 @@ const MarkdownRenderer = ({ content, frontmatter }: MarkdownRendererProps) => {
             </table>
           </div>
         </div>
-        {/* Mobile cards - will be handled by a custom parser */}
       </>
     ),
     thead: ({ children }: any) => (
