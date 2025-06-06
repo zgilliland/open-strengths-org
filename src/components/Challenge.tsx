@@ -40,14 +40,23 @@ const Challenge = () => {
   return (
     <section id="the-challenge" className="py-20 bg-gradient-to-b from-white to-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Hero Problem Statement */}
+        {/* Enhanced Hero Statement with Foundation */}
         <div className="text-center mb-20">
           <div className="bg-white rounded-2xl p-12 mb-12 border border-gray-200 shadow-lg">
             <div className="mb-8">
-              <div className="text-5xl font-bold text-gray-900 mb-4">The Challenge</div>
-              <div className="text-2xl text-gray-700 mb-6 leading-relaxed">
-                Research shows strengths-based approaches correlate with <span className="font-bold text-primary">19% higher performance</span> and <span className="font-bold text-primary">29% increased profit</span>
+              <div className="text-5xl font-bold text-gray-900 mb-6">The Challenge</div>
+              
+              {/* Foundation Research */}
+              <div className="text-xl text-gray-700 mb-6 leading-relaxed max-w-4xl mx-auto">
+                Decades of positive-psychology research show that leveraging what people <span className="font-bold text-primary">do best</span>—rather than fixing deficits—correlates with higher engagement, creativity, and well-being
               </div>
+              
+              {/* Impact Statistics */}
+              <div className="text-2xl text-gray-700 mb-6 leading-relaxed">
+                Organizations that deploy strengths interventions report up to <span className="font-bold text-primary">19% higher performance</span> and <span className="font-bold text-primary">29% increased profit</span>
+              </div>
+              
+              {/* Problem Statement */}
               <div className="text-lg text-gray-600 mb-8">
                 But accessing these benefits shouldn't require corporate budgets or accepting black-box algorithms
               </div>
