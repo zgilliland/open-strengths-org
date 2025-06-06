@@ -43,8 +43,11 @@ const TheProblem = () => {
         {/* Header */}
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-gray-900 mb-4">The Problem with Current Assessments</h2>
+          <p className="text-xl text-gray-600 mb-6 max-w-4xl mx-auto">
+            Decades of positive-psychology research show that leveraging what people <strong>do best</strong>—rather than fixing deficits—correlates with higher engagement, creativity, and well-being.
+          </p>
           <p className="text-xl text-gray-600 mb-8">
-            Despite proven benefits, existing tools create unnecessary barriers
+            But current assessment tools create unnecessary barriers to these benefits
           </p>
 
           {/* Simple Statistics */}
