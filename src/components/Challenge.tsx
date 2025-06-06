@@ -1,6 +1,6 @@
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { DollarSign, Lock, Globe, Users, Brain, TrendingUp, Zap } from 'lucide-react';
+import { DollarSign, Lock, Globe, Users, Brain, TrendingUp, Zap, Search } from 'lucide-react';
 
 const Challenge = () => {
   const barriers = [
@@ -114,57 +114,85 @@ const Challenge = () => {
           </div>
         </div>
 
-        {/* Barriers */}
+        {/* Barriers - Redesigned to match top sections */}
         <div className="mb-16">
-          <h3 className="text-3xl font-bold text-center text-gray-900 mb-12">
-            Current Tools Create Unnecessary Barriers
-          </h3>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {barriers.map((barrier, index) => {
-              const IconComponent = barrier.icon;
-              return (
-                <Card key={index} className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-2 bg-white border-0 shadow-md">
-                  <CardHeader className="text-center pb-4">
-                    <div className={`w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-r ${barrier.gradient} flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
-                      <IconComponent className="w-8 h-8 text-white" />
+          <div className="bg-gradient-to-r from-gray-50 to-slate-50 rounded-2xl p-12 border border-gray-100">
+            <div className="text-center mb-8">
+              <h3 className="text-2xl font-bold text-gray-900 mb-8">Current Tools Create Unnecessary Barriers</h3>
+            </div>
+            
+            <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+              {barriers.map((barrier, index) => {
+                const IconComponent = barrier.icon;
+                return (
+                  <div key={index} className="bg-white rounded-xl p-8 border border-gray-200 hover:shadow-lg transition-all duration-300">
+                    <div className="text-center">
+                      <div className="flex justify-center mb-4">
+                        <div className={`w-12 h-12 rounded-full bg-gradient-to-r ${barrier.gradient} flex items-center justify-center`}>
+                          <IconComponent className="w-6 h-6 text-white" />
+                        </div>
+                      </div>
+                      <h4 className="text-lg font-semibold text-gray-900 mb-3">{barrier.title}</h4>
+                      <p className="text-gray-600 text-sm leading-relaxed">
+                        {barrier.description}
+                      </p>
                     </div>
-                    <CardTitle className="text-lg font-semibold">{barrier.title}</CardTitle>
-                  </CardHeader>
-                  <CardContent className="pt-0">
-                    <CardDescription className="text-center text-gray-600">
-                      {barrier.description}
-                    </CardDescription>
-                  </CardContent>
-                </Card>
-              );
-            })}
+                  </div>
+                );
+              })}
+            </div>
           </div>
         </div>
 
-        {/* Solution Preview */}
-        <div className="text-center">
-          <div className="bg-gradient-to-r from-primary/5 to-primary/10 rounded-2xl p-12 mb-8 border border-primary/20">
-            <h3 className="text-3xl font-bold text-gray-900 mb-8">Our Solution: OpenStrengths</h3>
+        {/* Solution Preview - Redesigned to match top sections */}
+        <div className="mb-16">
+          <div className="bg-gradient-to-r from-primary/5 to-primary/10 rounded-2xl p-12 border border-primary/20">
+            <div className="text-center mb-8">
+              <h3 className="text-2xl font-bold text-gray-900 mb-8">Our Solution: OpenStrengths</h3>
+            </div>
+            
             <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-              <div className="group">
-                <div className="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">🔍</div>
-                <div className="font-semibold text-primary text-lg mb-2">Transparent</div>
-                <div className="text-gray-700">Open algorithms, public research, peer-reviewed methodology</div>
+              <div className="bg-white rounded-xl p-8 border border-primary/20 hover:shadow-lg transition-all duration-300">
+                <div className="text-center">
+                  <div className="flex justify-center mb-4">
+                    <div className="w-12 h-12 rounded-full bg-primary flex items-center justify-center">
+                      <Search className="w-6 h-6 text-white" />
+                    </div>
+                  </div>
+                  <h4 className="text-lg font-semibold text-primary mb-3">Transparent</h4>
+                  <p className="text-gray-700 text-sm leading-relaxed">Open algorithms, public research, peer-reviewed methodology</p>
+                </div>
               </div>
-              <div className="group">
-                <div className="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">🌍</div>
-                <div className="font-semibold text-primary text-lg mb-2">Inclusive</div>
-                <div className="text-gray-700">Global perspectives, cultural fairness, community-driven</div>
+              
+              <div className="bg-white rounded-xl p-8 border border-primary/20 hover:shadow-lg transition-all duration-300">
+                <div className="text-center">
+                  <div className="flex justify-center mb-4">
+                    <div className="w-12 h-12 rounded-full bg-primary flex items-center justify-center">
+                      <Globe className="w-6 h-6 text-white" />
+                    </div>
+                  </div>
+                  <h4 className="text-lg font-semibold text-primary mb-3">Inclusive</h4>
+                  <p className="text-gray-700 text-sm leading-relaxed">Global perspectives, cultural fairness, community-driven</p>
+                </div>
               </div>
-              <div className="group">
-                <div className="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">🆓</div>
-                <div className="font-semibold text-primary text-lg mb-2">Accessible</div>
-                <div className="text-gray-700">Free for individuals, affordable for organizations, API-ready</div>
+              
+              <div className="bg-white rounded-xl p-8 border border-primary/20 hover:shadow-lg transition-all duration-300">
+                <div className="text-center">
+                  <div className="flex justify-center mb-4">
+                    <div className="w-12 h-12 rounded-full bg-primary flex items-center justify-center">
+                      <DollarSign className="w-6 h-6 text-white" />
+                    </div>
+                  </div>
+                  <h4 className="text-lg font-semibold text-primary mb-3">Accessible</h4>
+                  <p className="text-gray-700 text-sm leading-relaxed">Free for individuals, affordable for organizations, API-ready</p>
+                </div>
               </div>
             </div>
           </div>
-          
+        </div>
+        
+        {/* Call to Action */}
+        <div className="text-center">
           <button 
             onClick={scrollToScience}
             className="inline-flex items-center text-primary hover:text-primary/80 font-semibold text-xl group bg-white px-8 py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
