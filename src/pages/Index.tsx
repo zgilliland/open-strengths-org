@@ -1,8 +1,7 @@
 
 import Navigation from '@/components/Navigation';
 import Hero from '@/components/Hero';
-import WhyOpen from '@/components/WhyOpen';
-import TheProblem from '@/components/TheProblem';
+import Challenge from '@/components/Challenge';
 import SixDomains from '@/components/SixDomains';
 import UnderTheHood from '@/components/UnderTheHood';
 import GetInvolved from '@/components/GetInvolved';
@@ -15,8 +14,7 @@ const Index = () => {
     <div className="min-h-screen font-inter">
       <Navigation />
       <Hero />
-      <WhyOpen />
-      <TheProblem />
+      <Challenge />
       <SixDomains />
       <UnderTheHood />
       <GetInvolved />
