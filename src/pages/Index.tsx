@@ -2,6 +2,7 @@
 import Navigation from '@/components/Navigation';
 import Hero from '@/components/Hero';
 import WhyOpen from '@/components/WhyOpen';
+import TheProblem from '@/components/TheProblem';
 import SixDomains from '@/components/SixDomains';
 import UnderTheHood from '@/components/UnderTheHood';
 import GetInvolved from '@/components/GetInvolved';
@@ -15,6 +16,7 @@ const Index = () => {
       <Navigation />
       <Hero />
       <WhyOpen />
+      <TheProblem />
       <SixDomains />
       <UnderTheHood />
       <GetInvolved />

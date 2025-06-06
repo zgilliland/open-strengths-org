@@ -10,6 +10,7 @@ const Navigation = () => {
 
   const navItems = [
     { label: 'Why Open', href: '#why-open' },
+    { label: 'The Problem', href: '#the-problem' },
     { label: 'The Science', href: '#science' },
     { label: 'Get Involved', href: '#get-involved' },
     { label: 'FAQ', href: '#faq' },

@@ -24,8 +24,8 @@ const WhyOpen = () => {
     }
   ];
 
-  const scrollToScience = () => {
-    const element = document.querySelector('#science');
+  const scrollToProblem = () => {
+    const element = document.querySelector('#the-problem');
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
@@ -61,7 +61,7 @@ const WhyOpen = () => {
 
         <div className="text-center">
           <button 
-            onClick={scrollToScience}
+            onClick={scrollToProblem}
             className="text-primary hover:text-primary/80 font-medium text-lg group"
           >
             Read the 2-min story →
