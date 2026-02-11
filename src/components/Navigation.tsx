@@ -51,7 +51,7 @@ const Navigation = () => {
               </button>
             ))}
             <Button asChild>
-              <a href="https://github.com/zgilliland/OpenStrengths" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
+              <a href="https://github.com/open-strengths/docs/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
                 <Github className="w-4 h-4" />
                 View GitHub
               </a>
@@ -81,7 +81,7 @@ const Navigation = () => {
                     </button>
                   ))}
                   <Button asChild className="flex items-center gap-2 justify-start">
-                    <a href="https://github.com/zgilliland/OpenStrengths" target="_blank" rel="noopener noreferrer">
+                    <a href="https://github.com/open-strengths/docs/" target="_blank" rel="noopener noreferrer">
                       <Github className="w-4 h-4" />
                       View GitHub
                     </a>
