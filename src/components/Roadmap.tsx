@@ -9,15 +9,15 @@ const Roadmap = () => {
     },
     {
       status: 'upcoming',
-      title: 'Calibration-1',
+      title: 'Pilot',
       timeframe: 'Q4 \'25',
-      description: 'Large-scale item parameter estimation'
+      description: 'First data collection and exploratory factor analysis'
     },
     {
       status: 'upcoming',
-      title: 'API v1',
+      title: 'Calibration-1',
       timeframe: 'Q2 \'26',
-      description: 'Production-ready scoring service'
+      description: 'Large-scale item parameter estimation'
     },
     {
       status: 'upcoming',
