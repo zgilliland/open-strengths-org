@@ -1,10 +1,14 @@
 
 
-# Make Partner Card Titles Consistent Height
+# Fix "Academic Organizations" Title Wrapping
 
-The issue: "Academic Organizations" wraps to two lines while the other three titles fit on one line, creating visual misalignment across the cards.
+The `min-h` approach reserves equal vertical space but doesn't prevent the visual inconsistency of one title wrapping. Two options:
 
-**Fix:** Add a minimum height to the `CardTitle` element in `GetInvolved.tsx` so all titles occupy the same vertical space regardless of whether they wrap. This keeps all card content aligned.
+**Option A (Recommended):** Shorten the title from "Academic Organizations" to "Academic Partners" or "Academia" so it fits on one line like the others.
 
-**File:** `src/components/GetInvolved.tsx` -- add a `min-h-[3.5rem] flex items-center justify-center` class to the `CardTitle` so all titles reserve two lines of space and center vertically within that space.
+**Option B:** Reduce the `CardTitle` font size from `text-lg` to `text-base` so all titles fit on one line at the current card width.
+
+Going with **Option A** -- rename "Academic Organizations" to "Academic Partners" in the `partnerTypes` array in `src/components/GetInvolved.tsx`. This keeps the font size consistent with the rest of the page and solves the wrapping issue cleanly.
+
+**File:** `src/components/GetInvolved.tsx` -- change `title: 'Academic Organizations'` to `title: 'Academic Partners'`.
 
