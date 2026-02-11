@@ -12,7 +12,7 @@ const GetInvolved = () => {
     },
     {
       avatar: '🎓',
-      title: 'Academic Organizations',
+      title: 'Academic Partners',
       description: 'Conduct validation studies and contribute to peer-reviewed research'
     },
     {
