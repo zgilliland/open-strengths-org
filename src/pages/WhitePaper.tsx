@@ -200,24 +200,6 @@ const WhitePaper = () => {
       <div className="max-w-4xl mx-auto px-4 py-8">
         <MarkdownRenderer content={markdownContent} frontmatter={frontmatter} />
         
-        {/* Footer */}
-        <footer className="border-t border-gray-200 pt-6 sm:pt-8 mt-8 sm:mt-12 text-center text-xs sm:text-sm text-gray-600">
-          {frontmatter.version && (
-            <p className="mb-2">
-              <strong>OpenStrengths White Paper v{frontmatter.version}</strong>
-              {frontmatter.date && ` • ${frontmatter.date}`}
-            </p>
-          )}
-          <p className="mb-2">
-            Licensed under Creative Commons Attribution 4.0 International License
-          </p>
-          <p>
-            For the latest version and updates, visit: 
-            <a href="https://github.com/zgilliland/OpenStrengths" className="text-blue-600 hover:underline ml-1">
-              github.com/zgilliland/OpenStrengths
-            </a>
-          </p>
-        </footer>
       </div>
     </div>
   );
