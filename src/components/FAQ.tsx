@@ -5,7 +5,11 @@ const FAQ = () => {
   const faqs = [
     {
       question: 'How is this different from CliftonStrengths®?',
-      answer: 'OpenStrengths is completely open-source and transparent, unlike proprietary assessments. Our methodology, scoring algorithms, and item bank are publicly available for scrutiny and improvement. We also use modern psychometric techniques like 2-PL IRT and Bayesian estimation.'
+      answer: 'CliftonStrengths is an excellent tool — but it costs $30–200 per person, is invisible outside corporate settings, and runs on closed, proprietary algorithms. OpenStrengths is completely open-source, free for everyone, and built on modern psychometric techniques like 2-PL IRT and Bayesian estimation. Our methodology, scoring, and item bank are public. We believe self-knowledge shouldn\'t require a corporate budget.'
+    },
+    {
+      question: 'What role does AI play?',
+      answer: 'AI plays a bounded role: it helps generate and verify assessment items, but it cannot characterize who you are. Humans interpret — AI measures. This is a deliberate design choice. Current AI companion apps validate what users want to hear 50% more than a human would. OpenStrengths provides the scientific foundation that AI-driven self-understanding currently lacks.'
     },
     {
       question: 'Can I use it commercially?',
@@ -17,7 +21,7 @@ const FAQ = () => {
     },
     {
       question: 'Will it always be free?',
-      answer: 'The core framework will always remain free and open-source. However, we may develop premium services like advanced analytics, custom reporting, or enterprise integrations. The fundamental assessment and scoring engine will never be locked behind a paywall.'
+      answer: 'Yes. Self-knowledge is a right, not a product. The core framework — assessment, scoring engine, and results — will always remain free and open-source. Your identity data belongs to you. We may develop premium services like enterprise integrations, but the fundamental tools will never be locked behind a paywall.'
     },
     {
       question: 'What research validates this approach?',
@@ -25,7 +29,7 @@ const FAQ = () => {
     },
     {
       question: 'How can I contribute to the project?',
-      answer: 'There are many ways to contribute: report bugs, submit code improvements, help with translations, run validation studies, or simply spread the word. Check our GitHub repository for current issues labeled "good first issue" if you\'re just getting started.'
+      answer: 'We\'re looking for psychometric partners, academic organizations to run validation studies, applied experts (coaches, educators, practitioners), and technical builders. You can also report bugs, help with translations, or spread the word. Reach out at team@openstrengths.org or check our GitHub.'
     }
   ];
 

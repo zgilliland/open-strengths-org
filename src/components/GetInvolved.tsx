@@ -4,52 +4,64 @@ import { Button } from '@/components/ui/button';
 import { Github, MessageCircle, Twitter, Mail } from 'lucide-react';
 
 const GetInvolved = () => {
-  const contributorTypes = [
+  const partnerTypes = [
     {
-      avatar: '🔬',
-      title: 'Researchers',
-      cta: 'Run a pilot',
-      description: 'Validate the framework with your research cohort'
-    },
-    {
-      avatar: '💻',
-      title: 'Developers',
-      cta: 'Fork the code',
-      description: 'Contribute to scoring algorithms and tooling'
+      avatar: '📐',
+      title: 'Psychometric Partners',
+      cta: 'Join as partner',
+      description: 'Help design and validate the assessment framework with measurement science expertise'
     },
     {
       avatar: '🎓',
-      title: 'Educators',
-      cta: 'Use lesson kit',
-      description: 'Teach strengths science with open materials'
+      title: 'Academic Organizations',
+      cta: 'Run a pilot',
+      description: 'Conduct validation studies and contribute to peer-reviewed research'
     },
     {
       avatar: '🌍',
-      title: 'Translators',
-      cta: 'Start a localization',
-      description: 'Help make this accessible globally'
+      title: 'Applied Experts',
+      cta: 'Get involved',
+      description: 'Coaches, educators, and practitioners who bring real-world implementation insight'
+    },
+    {
+      avatar: '💻',
+      title: 'Technical Builders',
+      cta: 'Fork the code',
+      description: 'Engineers and developers contributing to scoring algorithms, APIs, and tooling'
     }
   ];
 
   const socialLinks = [
-    { icon: Github, label: 'GitHub', href: 'https://github.com/openstrengths' },
+    { icon: Github, label: 'GitHub', href: 'https://github.com/open-strengths/docs/' },
     { icon: MessageCircle, label: 'Discord', href: '#' },
     { icon: Twitter, label: 'Twitter', href: '#' },
-    { icon: Mail, label: 'Newsletter', href: '#' }
+    { icon: Mail, label: 'Email', href: 'mailto:team@openstrengths.org' }
   ];
 
   return (
     <section id="get-involved" className="py-20 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
+        <div className="text-center mb-8">
           <h2 className="text-4xl font-bold text-gray-900 mb-4">Get Involved</h2>
-          <p className="text-xl text-gray-600">
-            Join a global community building the future of human potential
+          <p className="text-xl text-gray-600 mb-6">
+            OpenStrengths is a nonprofit, open-source project.
           </p>
+          <div className="bg-white rounded-xl p-6 border border-gray-200 max-w-2xl mx-auto mb-12">
+            <p className="text-lg text-gray-700">
+              Our remaining budget to complete validation and launch is{' '}
+              <span className="font-bold text-primary text-2xl">$2.2 million</span>.
+            </p>
+            <p className="text-sm text-muted-foreground mt-2">
+              Contact us at{' '}
+              <a href="mailto:team@openstrengths.org" className="text-primary hover:text-primary/80 underline">
+                team@openstrengths.org
+              </a>
+            </p>
+          </div>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-          {contributorTypes.map((type, index) => (
+          {partnerTypes.map((type, index) => (
             <Card key={index} className="group hover:shadow-lg transition-all duration-300 hover:-translate-y-1 cursor-pointer">
               <CardHeader className="text-center">
                 <div className="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">

@@ -8,10 +8,10 @@ const Footer = () => {
           <div>
             <h3 className="text-xl font-bold mb-4">OpenStrengths</h3>
             <p className="text-gray-300 mb-4">
-              The first open-source, peer-reviewed framework for discovering and developing human potential.
+              A nonprofit, open-source strengths framework grounded in measurement science. Free for everyone, forever.
             </p>
             <div className="flex items-center space-x-4">
-              <span className="text-sm text-gray-400">© 2025 OpenStrengths Community</span>
+              <span className="text-sm text-gray-400">© 2026 OpenStrengths Community</span>
             </div>
           </div>
 
@@ -42,7 +42,7 @@ const Footer = () => {
         <div className="border-t border-gray-800 mt-8 pt-8 text-center">
           <p className="text-gray-400 text-sm">
             Made possible by contributors around the world. 
-            <a href="https://github.com/zgilliland/OpenStrengths" className="text-primary hover:text-primary/80 ml-1">
+            <a href="https://github.com/open-strengths/docs/" className="text-primary hover:text-primary/80 ml-1">
               Join us on GitHub →
             </a>
           </p>
