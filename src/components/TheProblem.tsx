@@ -115,8 +115,8 @@ const TheProblem = () => {
             </button>
             
             <div className="text-sm text-gray-500">
-              <a href="/white-paper" className="hover:text-primary transition-colors">
-                Read our detailed research and methodology in the whitepaper
+              <a href="/manifesto" className="hover:text-primary transition-colors">
+                Read our detailed research and methodology in the manifesto
               </a>
             </div>
           </div>
