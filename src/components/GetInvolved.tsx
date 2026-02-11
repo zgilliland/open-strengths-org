@@ -1,7 +1,5 @@
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Github, MessageCircle, Twitter, Mail } from 'lucide-react';
 
 const GetInvolved = () => {
   const partnerTypes = [
@@ -25,13 +23,6 @@ const GetInvolved = () => {
       title: 'Technical Builders',
       description: 'Engineers and developers contributing to scoring algorithms, APIs, and tooling'
     }
-  ];
-
-  const socialLinks = [
-    { icon: Github, label: 'GitHub', href: 'https://github.com/open-strengths/docs/' },
-    { icon: MessageCircle, label: 'Discord', href: '#' },
-    { icon: Twitter, label: 'Twitter', href: '#' },
-    { icon: Mail, label: 'Email', href: 'mailto:team@openstrengths.org' }
   ];
 
   return (
@@ -70,28 +61,6 @@ const GetInvolved = () => {
               </CardContent>
             </Card>
           ))}
-        </div>
-
-        <div className="text-center">
-          <h3 className="text-xl font-semibold text-gray-900 mb-6">Connect with the Community</h3>
-          <div className="flex justify-center space-x-4">
-            {socialLinks.map((link, index) => {
-              const IconComponent = link.icon;
-              return (
-                <Button
-                  key={index}
-                  variant="outline"
-                  size="icon"
-                  className="w-12 h-12 hover:bg-primary hover:text-white transition-colors"
-                  asChild
-                >
-                  <a href={link.href} target="_blank" rel="noopener noreferrer" aria-label={link.label}>
-                    <IconComponent className="w-5 h-5" />
-                  </a>
-                </Button>
-              );
-            })}
-          </div>
         </div>
       </div>
     </section>
