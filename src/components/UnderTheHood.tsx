@@ -5,144 +5,117 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 const UnderTheHood = () => {
   return (
     <section id="science" className="py-20 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">Under the Hood</h2>
-          <p className="text-xl text-gray-600">Science + Math + Open Source</p>
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-12">
+          <h2 className="text-4xl font-bold text-foreground mb-4">Under the Hood</h2>
+          <p className="text-xl text-muted-foreground">How it works — and why you can trust it</p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12 items-start">
-          {/* Left Column - Features */}
-          <div className="space-y-6">
-            <h3 className="text-2xl font-semibold text-gray-900 mb-6">Key Features</h3>
-            
-            <div className="space-y-4">
-              {[
-                {
-                  title: 'Open Item Bank (CSV)',
-                  description: 'Transparent question database accessible to researchers worldwide'
-                },
-                {
-                  title: '2-PL Bayesian IRT Scoring',
-                  description: 'Advanced psychometric modeling for precise ability estimation'
-                },
-                {
-                  title: 'Forced-Choice Anti-Faking',
-                  description: 'Built-in protection against response manipulation'
-                },
-                {
-                  title: 'Bounded AI',
-                  description: 'AI generates and verifies assessment items but cannot characterize identity — humans interpret, AI measures'
-                },
-                {
-                  title: 'Adaptive Questioning',
-                  description: 'Questions matched to context, culture, and reading level for every respondent'
-                },
-                {
-                  title: 'Apache-2.0 License',
-                  description: 'Permissive licensing for commercial and research use'
-                }
-              ].map((feature, index) => (
-                <div key={index} className="flex items-start space-x-4 p-4 rounded-lg bg-gray-50 hover:bg-gray-100 transition-colors">
-                  <div className="w-2 h-2 rounded-full bg-primary mt-3 flex-shrink-0"></div>
-                  <div>
-                    <h4 className="font-semibold text-gray-900">{feature.title}</h4>
-                    <p className="text-gray-600 text-sm mt-1">{feature.description}</p>
+        <Tabs defaultValue="framework" className="w-full">
+          <TabsList className="grid w-full grid-cols-3 mb-8">
+            <TabsTrigger value="framework">What We Measure</TabsTrigger>
+            <TabsTrigger value="adaptive">How Questions Adapt</TabsTrigger>
+            <TabsTrigger value="data">Your Data</TabsTrigger>
+          </TabsList>
+
+          <TabsContent value="framework">
+            <Card>
+              <CardHeader>
+                <CardTitle>Six Domains, 36 Facets</CardTitle>
+                <CardDescription>A model tested against alternatives and selected for what it predicts</CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <ul className="space-y-3 text-muted-foreground">
+                  <li className="flex items-start gap-3">
+                    <span className="mt-1.5 h-2 w-2 rounded-full bg-primary flex-shrink-0" />
+                    <span>Tested 4, 5, 6, and 7-factor models with factor analysis on 847 participants — the 6-factor model won for clearest construct boundaries and best real-world prediction</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="mt-1.5 h-2 w-2 rounded-full bg-primary flex-shrink-0" />
+                    <span>Every facet loads uniquely — no redundancy, each backed by published peer-reviewed research</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="mt-1.5 h-2 w-2 rounded-full bg-primary flex-shrink-0" />
+                    <span>Covers cognitive, motivational, emotional, interpersonal, and leadership strengths — not just "character virtues"</span>
+                  </li>
+                </ul>
+                <p className="text-sm font-medium text-foreground pt-2 border-t border-border">
+                  Not too broad, not too narrow — 36 facets that actually predict what matters.
+                </p>
+              </CardContent>
+            </Card>
+          </TabsContent>
+
+          <TabsContent value="adaptive">
+            <Card>
+              <CardHeader>
+                <CardTitle>Adaptive Measurement</CardTitle>
+                <CardDescription>Same construct, your context</CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-6">
+                <p className="text-muted-foreground text-sm">
+                  AI generates assessment items matched to your reading level and context. Every item passes semantic verification to ensure it measures the same thing — regardless of how it's worded.
+                </p>
+
+                <div>
+                  <p className="text-xs font-semibold text-muted-foreground uppercase mb-3">
+                    Example: Curiosity — three contexts, one measurement
+                  </p>
+                  <div className="space-y-3">
+                    <div className="bg-muted/50 p-4 rounded-lg border border-border">
+                      <div className="text-xs font-semibold text-muted-foreground uppercase mb-1">Standard</div>
+                      <p className="text-sm text-foreground">"I enjoy exploring topics I know nothing about."</p>
+                    </div>
+                    <div className="bg-muted/50 p-4 rounded-lg border border-border">
+                      <div className="text-xs font-semibold text-primary uppercase mb-1">Student</div>
+                      <p className="text-sm text-foreground">"I like picking electives in subjects I haven't tried."</p>
+                    </div>
+                    <div className="bg-muted/50 p-4 rounded-lg border border-border">
+                      <div className="text-xs font-semibold text-primary uppercase mb-1">Professional</div>
+                      <p className="text-sm text-foreground">"I volunteer for projects outside my expertise."</p>
+                    </div>
                   </div>
                 </div>
-              ))}
-            </div>
-          </div>
 
-          {/* Right Column - Technical Details */}
-          <div>
-            <Tabs defaultValue="curiosity" className="w-full">
-              <TabsList className="grid w-full grid-cols-3">
-                <TabsTrigger value="curiosity">Curiosity</TabsTrigger>
-                <TabsTrigger value="scorer">Scorer</TabsTrigger>
-                <TabsTrigger value="architecture">Architecture</TabsTrigger>
-              </TabsList>
-              
-              <TabsContent value="curiosity" className="mt-6">
-                <Card>
-                  <CardHeader>
-                    <CardTitle>Adaptive Measurement</CardTitle>
-                    <CardDescription>Same construct, different contexts</CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="space-y-4">
-                      <p className="text-sm text-gray-600 mb-4">
-                        The same facet — like Curiosity — is measured with language matched to who's taking it:
-                      </p>
-                      <div className="space-y-3">
-                        <div className="bg-gray-50 p-4 rounded-lg border">
-                          <div className="text-xs font-semibold text-gray-500 uppercase mb-1">Standard</div>
-                          <p className="text-sm text-gray-800">"I enjoy exploring topics I know nothing about."</p>
-                        </div>
-                        <div className="bg-blue-50 p-4 rounded-lg border border-blue-100">
-                          <div className="text-xs font-semibold text-blue-600 uppercase mb-1">Student</div>
-                          <p className="text-sm text-gray-800">"I like picking electives in subjects I haven't tried."</p>
-                        </div>
-                        <div className="bg-indigo-50 p-4 rounded-lg border border-indigo-100">
-                          <div className="text-xs font-semibold text-indigo-600 uppercase mb-1">Professional</div>
-                          <p className="text-sm text-gray-800">"I volunteer for projects outside my expertise."</p>
-                        </div>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </TabsContent>
-              
-              <TabsContent value="scorer" className="mt-6">
-                <Card>
-                  <CardHeader>
-                    <CardTitle>Scoring Script</CardTitle>
-                    <CardDescription>IRT-based ability estimation</CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <pre className="bg-gray-900 text-blue-400 p-4 rounded text-sm overflow-x-auto">
-{`def estimate_ability(responses, items):
-    """2PL IRT Bayesian estimation"""
-    theta = 0.0  # Prior mean
-    for iteration in range(50):
-        likelihood = calculate_likelihood(
-            theta, responses, items
-        )
-        theta = update_posterior(theta, likelihood)
-    return theta`}
-                    </pre>
-                  </CardContent>
-                </Card>
-              </TabsContent>
-              
-              <TabsContent value="architecture" className="mt-6">
-                <Card>
-                  <CardHeader>
-                    <CardTitle>System Architecture</CardTitle>
-                    <CardDescription>Bounded AI — generates items, never characterizes identity</CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="bg-gray-50 p-6 rounded-lg">
-                      <div className="text-center text-gray-600">
-                        <div className="space-y-4">
-                          <div className="bg-white p-3 rounded border">📝 Item Bank (CSV)</div>
-                          <div className="text-2xl">↓</div>
-                          <div className="bg-white p-3 rounded border">🤖 AI Item Generation + Quality Gates</div>
-                          <div className="text-2xl">↓</div>
-                          <div className="bg-white p-3 rounded border">🧮 IRT Scorer (Adaptive to Context)</div>
-                          <div className="text-2xl">↓</div>
-                          <div className="bg-white p-3 rounded border">📊 Results API (JSON)</div>
-                          <div className="text-2xl">↓</div>
-                          <div className="bg-white p-3 rounded border">📱 Client Apps</div>
-                        </div>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </TabsContent>
-            </Tabs>
-          </div>
-        </div>
+                <p className="text-sm font-medium text-foreground pt-2 border-t border-border">
+                  AI generates and verifies questions. It never tells you who you are.
+                </p>
+              </CardContent>
+            </Card>
+          </TabsContent>
+
+          <TabsContent value="data">
+            <Card>
+              <CardHeader>
+                <CardTitle>Open and Portable</CardTitle>
+                <CardDescription>Your results belong to you</CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <ul className="space-y-3 text-muted-foreground">
+                  <li className="flex items-start gap-3">
+                    <span className="mt-1.5 h-2 w-2 rounded-full bg-primary flex-shrink-0" />
+                    <span>Open API — integrate your profile with career tools, learning platforms, and coaching apps</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="mt-1.5 h-2 w-2 rounded-full bg-primary flex-shrink-0" />
+                    <span>OAuth 2.0 — you decide who sees what, and revoke access anytime</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="mt-1.5 h-2 w-2 rounded-full bg-primary flex-shrink-0" />
+                    <span>Standardized JSON formats — no vendor lock-in, no data silos</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="mt-1.5 h-2 w-2 rounded-full bg-primary flex-shrink-0" />
+                    <span>Apache-2.0 license — the code, algorithms, and item bank are all public</span>
+                  </li>
+                </ul>
+                <p className="text-sm font-medium text-foreground pt-2 border-t border-border">
+                  Your strengths profile belongs to you, not a platform.
+                </p>
+              </CardContent>
+            </Card>
+          </TabsContent>
+        </Tabs>
       </div>
     </section>
   );
