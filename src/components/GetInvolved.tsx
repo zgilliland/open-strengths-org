@@ -8,25 +8,21 @@ const GetInvolved = () => {
     {
       avatar: '📐',
       title: 'Psychometric Partners',
-      cta: 'Join as partner',
       description: 'Help design and validate the assessment framework with measurement science expertise'
     },
     {
       avatar: '🎓',
       title: 'Academic Organizations',
-      cta: 'Run a pilot',
       description: 'Conduct validation studies and contribute to peer-reviewed research'
     },
     {
       avatar: '🌍',
       title: 'Applied Experts',
-      cta: 'Get involved',
       description: 'Coaches, educators, and practitioners who bring real-world implementation insight'
     },
     {
       avatar: '💻',
       title: 'Technical Builders',
-      cta: 'Fork the code',
       description: 'Engineers and developers contributing to scoring algorithms, APIs, and tooling'
     }
   ];
@@ -70,12 +66,9 @@ const GetInvolved = () => {
                 <CardTitle className="text-lg">{type.title}</CardTitle>
               </CardHeader>
               <CardContent className="text-center">
-                <CardDescription className="mb-4">
+                <CardDescription>
                   {type.description}
                 </CardDescription>
-                <Button variant="outline" size="sm" className="w-full group-hover:bg-primary group-hover:text-white transition-colors">
-                  {type.cta}
-                </Button>
               </CardContent>
             </Card>
           ))}
