@@ -31,6 +31,14 @@ const UnderTheHood = () => {
                   description: 'Built-in protection against response manipulation'
                 },
                 {
+                  title: 'Bounded AI',
+                  description: 'AI generates and verifies assessment items but cannot characterize identity — humans interpret, AI measures'
+                },
+                {
+                  title: 'Adaptive Questioning',
+                  description: 'Questions matched to context, culture, and reading level for every respondent'
+                },
+                {
                   title: 'Apache-2.0 License',
                   description: 'Permissive licensing for commercial and research use'
                 }
@@ -48,38 +56,39 @@ const UnderTheHood = () => {
 
           {/* Right Column - Technical Details */}
           <div>
-            <Tabs defaultValue="taxonomy" className="w-full">
+            <Tabs defaultValue="curiosity" className="w-full">
               <TabsList className="grid w-full grid-cols-3">
-                <TabsTrigger value="taxonomy">Taxonomy</TabsTrigger>
+                <TabsTrigger value="curiosity">Curiosity</TabsTrigger>
                 <TabsTrigger value="scorer">Scorer</TabsTrigger>
                 <TabsTrigger value="architecture">Architecture</TabsTrigger>
               </TabsList>
               
-              <TabsContent value="taxonomy" className="mt-6">
+              <TabsContent value="curiosity" className="mt-6">
                 <Card>
                   <CardHeader>
-                    <CardTitle>YAML Taxonomy</CardTitle>
-                    <CardDescription>Structured strength definitions</CardDescription>
+                    <CardTitle>Adaptive Measurement</CardTitle>
+                    <CardDescription>Same construct, different contexts</CardDescription>
                   </CardHeader>
                   <CardContent>
-                    <pre className="bg-gray-900 text-green-400 p-4 rounded text-sm overflow-x-auto">
-{`domains:
-  insight:
-    name: "Strategic Insight"
-    facets:
-      - analytical_thinking
-      - systems_perspective
-      - pattern_recognition
-    items: 240
-  
-  drive:
-    name: "Achievement Drive"
-    facets:
-      - goal_orientation
-      - persistence
-      - initiative
-    items: 180`}
-                    </pre>
+                    <div className="space-y-4">
+                      <p className="text-sm text-gray-600 mb-4">
+                        The same facet — like Curiosity — is measured with language matched to who's taking it:
+                      </p>
+                      <div className="space-y-3">
+                        <div className="bg-gray-50 p-4 rounded-lg border">
+                          <div className="text-xs font-semibold text-gray-500 uppercase mb-1">Standard</div>
+                          <p className="text-sm text-gray-800">"I enjoy exploring topics I know nothing about."</p>
+                        </div>
+                        <div className="bg-blue-50 p-4 rounded-lg border border-blue-100">
+                          <div className="text-xs font-semibold text-blue-600 uppercase mb-1">Student</div>
+                          <p className="text-sm text-gray-800">"I like picking electives in subjects I haven't tried."</p>
+                        </div>
+                        <div className="bg-indigo-50 p-4 rounded-lg border border-indigo-100">
+                          <div className="text-xs font-semibold text-indigo-600 uppercase mb-1">Professional</div>
+                          <p className="text-sm text-gray-800">"I volunteer for projects outside my expertise."</p>
+                        </div>
+                      </div>
+                    </div>
                   </CardContent>
                 </Card>
               </TabsContent>
@@ -110,7 +119,7 @@ const UnderTheHood = () => {
                 <Card>
                   <CardHeader>
                     <CardTitle>System Architecture</CardTitle>
-                    <CardDescription>Modular and extensible design</CardDescription>
+                    <CardDescription>Bounded AI — generates items, never characterizes identity</CardDescription>
                   </CardHeader>
                   <CardContent>
                     <div className="bg-gray-50 p-6 rounded-lg">
@@ -118,7 +127,9 @@ const UnderTheHood = () => {
                         <div className="space-y-4">
                           <div className="bg-white p-3 rounded border">📝 Item Bank (CSV)</div>
                           <div className="text-2xl">↓</div>
-                          <div className="bg-white p-3 rounded border">🧮 IRT Scorer (Python)</div>
+                          <div className="bg-white p-3 rounded border">🤖 AI Item Generation + Quality Gates</div>
+                          <div className="text-2xl">↓</div>
+                          <div className="bg-white p-3 rounded border">🧮 IRT Scorer (Adaptive to Context)</div>
                           <div className="text-2xl">↓</div>
                           <div className="bg-white p-3 rounded border">📊 Results API (JSON)</div>
                           <div className="text-2xl">↓</div>

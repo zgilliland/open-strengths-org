@@ -9,37 +9,37 @@ const SixDomains = () => {
       name: 'Insight',
       emoji: '🧠',
       color: 'insight',
-      description: 'Strategic analysis & sense-making'
+      description: 'How you process, analyze, and understand'
     },
     {
       name: 'Drive',
       emoji: '⚡️',
       color: 'drive',
-      description: 'Goal-directed execution'
+      description: 'How you pursue, persist, and achieve'
     },
     {
       name: 'Connection',
       emoji: '🤝',
       color: 'connection',
-      description: 'Relationship building'
+      description: 'How you relate, empathize, and bond'
     },
     {
       name: 'Influence',
       emoji: '📣',
       color: 'influence',
-      description: 'Persuasion & mobilization'
+      description: 'How you lead, persuade, and mobilize'
     },
     {
       name: 'Creativity',
       emoji: '🎨',
       color: 'creativity',
-      description: 'Divergent thinking & synthesis'
+      description: 'How you imagine, invent, and adapt'
     },
     {
       name: 'Stability',
       emoji: '🛡️',
       color: 'stability',
-      description: 'Reliability & risk management'
+      description: 'How you regulate, endure, and stay grounded'
     }
   ];
 
@@ -61,7 +61,7 @@ const SixDomains = () => {
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-gray-900 mb-4">Six Strength Domains</h2>
           <p className="text-xl text-gray-600">
-            Hover to explore each dimension of human potential
+            36 facets across six domains — hover to explore each dimension
           </p>
         </div>
 
