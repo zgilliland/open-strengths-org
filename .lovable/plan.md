@@ -1,67 +1,83 @@
 
 
-# Aligning Landing Page Content with the Manifesto
+# Redesign "Under the Hood" Section
 
-## Philosophy
+## The Problem with the Current Version
 
-Keep the current Hero untouched. Keep the same section count and simple scroll-down UX. The change is purely narrative: replace the current "academic research stats" framing with the manifesto's more compelling story arc, and update downstream sections with manifesto-accurate content.
+The section currently has two disconnected halves: a left column listing 6 technical features (jargon-heavy, no narrative) and a right column with 3 tabs (Curiosity example, a Python code snippet, an emoji flowchart). There's no story connecting them, and a visitor can't tell why any of it matters.
 
-## The New Narrative Arc (Challenge Section)
+## The New Concept: Three Pillars
 
-The current Challenge section has 6 boxes (Foundation, Impact, Problem, Barriers, Solution, CTA). The manifesto tells a tighter, more emotional 3-beat story. Restructure into:
+The white paper organizes its technical approach around three parts that map perfectly to a landing page narrative. Replace the current layout with **three clear pillars**, each answering a plain-language question:
 
-**Beat 1 -- "The Need"** (blue box)
-Everyone searches for self-understanding. Personality quizzes go viral. Astrology has 83B views on TikTok. The desire is fundamental. Some tools deliver -- Myers-Briggs gave us "introvert" and "extrovert," CliftonStrengths goes deeper still. But most people never access them: $30-200 per person, invisible outside corporate settings.
+### Pillar 1: "What We Measure" (The Framework)
+- 6 domains, 36 facets -- a hierarchical model tested against 4, 5, and 7-factor alternatives
+- Selected because it best predicts real-world outcomes (innovation, safety, leadership)
+- Every facet backed by peer-reviewed research with published factor loadings
+- Plain-language hook: "Not too broad, not too narrow -- 36 facets that actually predict what matters"
 
-Pull quote: *"Everyone deserves to know what's strong in them."*
+### Pillar 2: "How Questions Adapt to You" (The STEM Adapter)
+- AI generates assessment items matched to your reading level, context, and background
+- The same facet (e.g., Curiosity) is measured with different language for a high school student vs. a professional
+- Every generated item passes multi-layer verification (semantic alignment, cross-loading prevention, reading level check)
+- The key distinction: **AI generates and verifies questions, but never characterizes who you are**
+- Keep the Curiosity example (Standard / Student / Professional) -- it's excellent and already built
+- Plain-language hook: "The test meets you where you are. Same measurement, your language."
 
-**Beat 2 -- "The AI Problem"** (orange/red box, NEW)
-AI met people where they were. 220M companion app downloads. A third of teens discuss serious life issues with AI. It responds to your situation, it's there at 2am, it won't charge by the hour. But there's nothing underneath -- no framework, no evidence. Systems validate what you want to hear 50% more than a human would. Early research shows sustained AI identity conversations lower confidence in decision-making.
+### Pillar 3: "Your Data, Your Control" (Data Portability)
+- Open API with OAuth 2.0 -- you control who sees your results
+- Standardized JSON schemas so results work across platforms (career tools, learning systems, coaching apps)
+- No vendor lock-in: export, share, or delete your data anytime
+- Plain-language hook: "Your strengths profile belongs to you, not a platform"
 
-Anchor line: *"The question isn't whether AI will shape how people understand themselves. It already does. The question is whether there will be anything real underneath."*
+## Layout
 
-**Beat 3 -- "Our Answer"** (primary-colored box)
-Compact the current Solution preview cards (Transparent, Inclusive, Accessible) into this single beat, framed by the manifesto's closing: "OpenStrengths is building that foundation." Keep the three cards but update copy to manifesto language.
+Replace the current 2-column layout with a simpler structure:
 
-This replaces the current 6 boxes with 3, making the section faster to read and more emotionally compelling.
+- **Header**: Keep "Under the Hood" title. Update subtitle to something like "How it works -- and why you can trust it"
+- **Three cards or tabs** for the three pillars, each with:
+  - A clear title and one-sentence hook
+  - 2-3 concise bullet points explaining the approach
+  - One concrete detail or example that makes it tangible
+- The Curiosity adaptive example (Standard / Student / Professional) stays as the showcase detail for Pillar 2
+- Remove the Python code snippet (too technical for a landing page audience)
+- Remove the emoji architecture flowchart (too simplistic to be useful)
 
-## Other Section Updates
+## Visual Approach
 
-### Six Domains
-- Update descriptions to match manifesto: "how you process, analyze, and understand" etc.
-- Add "36 facets across six domains" subtitle language
+Use tabs (like now) or stacked cards. Tabs work well here since the three pillars are distinct and a visitor might only care about one. Each tab content should be a single card with clear, scannable content -- not a wall of text.
 
-### Under the Hood
-- Add the "Curiosity" measurement example from the manifesto (standard / student / professional versions of the same question)
-- Add the "bounded AI" concept: AI generates and verifies questions but cannot characterize identity
-- Update the architecture tab to reflect adaptive questioning matched to context/reading level
+## Content Details
 
-### Get Involved
-- Lead with the nonprofit framing and $2.2M funding need
-- Replace the 4 generic contributor types with the manifesto's 4 partner types: Psychometric, Academic, Applied experts, Technical builders
-- Add team@openstrengths.org contact
-- Keep social links at bottom
+**Tab 1 -- "What We Measure"**
+Title: "Six Domains, 36 Facets"
+Subtitle: "A model tested against alternatives and selected for what it predicts"
 
-### FAQ
-- Update "Will it always be free?" answer with "Self-knowledge is a right, not a product" language
-- Add new Q: "What role does AI play?" covering bounded AI (generates/verifies items, cannot characterize identity)
-- Update CliftonStrengths comparison to mention accessibility and AI framing
+- Tested 4, 5, 6, and 7-factor models with factor analysis on 847 participants
+- 6-factor model won: clearest construct boundaries, best real-world prediction
+- Every facet loads uniquely (no redundancy), backed by published research
+- Covers cognitive, motivational, emotional, interpersonal, and leadership strengths -- not just "character virtues"
 
-### Footer
-- Update copyright from 2025 to 2026
-- Update GitHub link to `https://github.com/open-strengths/docs/`
-- Update description to mention nonprofit status
+**Tab 2 -- "How Questions Adapt"**
+Title: "Adaptive Measurement"
+Subtitle: "Same construct, your context"
 
-## Files to Modify
+- Keep the existing Curiosity example (Standard / Student / Professional cards)
+- Add a brief explanation: AI generates items matched to reading level and context, then every item passes semantic verification to ensure it measures the same thing
+- Anchor line: "AI generates and verifies questions. It never tells you who you are."
 
-| File | Change |
-|------|--------|
-| `src/components/Challenge.tsx` | Restructure from 6 boxes to 3 beats with manifesto content |
-| `src/components/SixDomains.tsx` | Update domain descriptions and subtitle |
-| `src/components/UnderTheHood.tsx` | Add Curiosity example, bounded AI, adaptive questioning |
-| `src/components/GetInvolved.tsx` | Rewrite with funding need and manifesto partner types |
-| `src/components/FAQ.tsx` | Update answers, add AI question |
-| `src/components/Footer.tsx` | Update year, GitHub link, description |
+**Tab 3 -- "Your Data"**
+Title: "Open and Portable"
+Subtitle: "Your results belong to you"
 
-No new files. No new dependencies. Same page structure, same visual style.
+- Open API: integrate your profile with career tools, learning platforms, coaching apps
+- OAuth 2.0: you decide who sees what, and revoke access anytime
+- Standardized formats: no vendor lock-in, no data silos
+- Apache-2.0 license: the code, algorithms, and item bank are public
+
+## File to Modify
+
+`src/components/UnderTheHood.tsx` -- rewrite the section content while keeping the same component structure (section with id="science", same styling approach)
+
+No new files or dependencies needed.
 
