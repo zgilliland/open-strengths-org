@@ -63,7 +63,7 @@ const GetInvolved = () => {
                 <div className="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">
                   {type.avatar}
                 </div>
-                <CardTitle className="text-lg">{type.title}</CardTitle>
+                <CardTitle className="text-lg min-h-[3.5rem] flex items-center justify-center">{type.title}</CardTitle>
               </CardHeader>
               <CardContent className="text-center">
                 <CardDescription>
