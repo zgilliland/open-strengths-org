@@ -10,7 +10,7 @@ const Roadmap = () => {
     {
       status: 'upcoming',
       title: 'Pilot',
-      timeframe: 'Q4 \'25',
+      timeframe: 'Q1 \'26',
       description: 'First data collection and exploratory factor analysis'
     },
     {
