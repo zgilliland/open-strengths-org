@@ -88,17 +88,6 @@ const Roadmap = () => {
           </div>
         </div>
 
-        <div className="text-center mt-12">
-          <a 
-            href="https://github.com/openstrengths/framework/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="text-primary hover:text-primary/80 font-medium text-lg group"
-          >
-            See open issues →
-            <span className="ml-1 group-hover:ml-2 transition-all duration-200">🚀</span>
-          </a>
-        </div>
       </div>
     </section>
   );
