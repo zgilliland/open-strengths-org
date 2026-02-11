@@ -320,23 +320,6 @@ const MarkdownRenderer = ({ content, frontmatter }: MarkdownRendererProps) => {
           __html: `<div class="text-sm sm:text-base leading-relaxed">${finalContent}</div>` 
         }} 
       />
-      
-      {/* Call to Action Box */}
-      <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 sm:p-6 text-center mt-8">
-        <h4 className="text-lg sm:text-xl font-semibold mb-2">Get Involved Today</h4>
-        <p className="mb-4 text-sm sm:text-base">Join the movement to democratize strengths assessment</p>
-        <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-3">
-          <Button asChild className="w-full sm:w-auto">
-            <a href="https://github.com/openstrengths">GitHub Repository</a>
-          </Button>
-          <Button variant="outline" className="w-full sm:w-auto">
-            <a href="#newsletter">Join Newsletter</a>
-          </Button>
-          <Button variant="outline" className="w-full sm:w-auto">
-            <a href="#discord">Discord Community</a>
-          </Button>
-        </div>
-      </div>
     </div>
   );
 };
