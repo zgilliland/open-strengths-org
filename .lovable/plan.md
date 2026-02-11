@@ -1,14 +1,23 @@
 
 
-# Fix "Academic Organizations" Title Wrapping
+# Replace "What We Measure" Tab in Under the Hood
 
-The `min-h` approach reserves equal vertical space but doesn't prevent the visual inconsistency of one title wrapping. Two options:
+**Problem:** The "What We Measure" tab repeats the Six Domains content shown directly above it.
 
-**Option A (Recommended):** Shorten the title from "Academic Organizations" to "Academic Partners" or "Academia" so it fits on one line like the others.
+**Solution:** Replace it with **"Why You Can Trust It"** -- focused on psychometric rigor, complementing "How Questions Adapt" and "Your Data."
 
-**Option B:** Reduce the `CardTitle` font size from `text-lg` to `text-base` so all titles fit on one line at the current card width.
+## Changes
 
-Going with **Option A** -- rename "Academic Organizations" to "Academic Partners" in the `partnerTypes` array in `src/components/GetInvolved.tsx`. This keeps the font size consistent with the rest of the page and solves the wrapping issue cleanly.
+**File:** `src/components/UnderTheHood.tsx`
 
-**File:** `src/components/GetInvolved.tsx` -- change `title: 'Academic Organizations'` to `title: 'Academic Partners'`.
+- Rename first tab from "What We Measure" to "Why You Can Trust It" (value: `trust`)
+- Replace card title/description with "Rigorous by Design" / "Every decision is backed by evidence"
+- New bullet points:
+  - Research compared 4-, 5-, 6-, and 7-factor models -- the 6-factor structure was selected for the clearest construct boundaries and best real-world prediction
+  - Every facet loads uniquely in factor analysis -- no redundancy, each grounded in peer-reviewed research
+  - Anti-faking measures planned: forced-choice items and response-time checks
+  - All scoring algorithms, factor loadings, and IRT parameters will be public and reproducible
+- Summary line: "Built on peer-reviewed methods -- and you can verify every step."
+
+The three tabs become: **trust the science** / **understand the experience** / **own your data**.
 
