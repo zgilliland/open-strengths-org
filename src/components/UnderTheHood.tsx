@@ -11,36 +11,40 @@ const UnderTheHood = () => {
           <p className="text-xl text-muted-foreground">How it works — and why you can trust it</p>
         </div>
 
-        <Tabs defaultValue="framework" className="w-full">
+        <Tabs defaultValue="trust" className="w-full">
           <TabsList className="grid w-full grid-cols-3 mb-8">
-            <TabsTrigger value="framework">What We Measure</TabsTrigger>
+            <TabsTrigger value="trust">Why You Can Trust It</TabsTrigger>
             <TabsTrigger value="adaptive">How Questions Adapt</TabsTrigger>
             <TabsTrigger value="data">Your Data</TabsTrigger>
           </TabsList>
 
-          <TabsContent value="framework">
+          <TabsContent value="trust">
             <Card>
               <CardHeader>
-                <CardTitle>Six Domains, 36 Facets</CardTitle>
-                <CardDescription>A model tested against alternatives and selected for what it predicts</CardDescription>
+                <CardTitle>Rigorous by Design</CardTitle>
+                <CardDescription>Every decision is backed by evidence</CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
                 <ul className="space-y-3 text-muted-foreground">
                   <li className="flex items-start gap-3">
                     <span className="mt-1.5 h-2 w-2 rounded-full bg-primary flex-shrink-0" />
-                    <span>Tested 4, 5, 6, and 7-factor models with factor analysis on 847 participants — the 6-factor model won for clearest construct boundaries and best real-world prediction</span>
+                    <span>Research compared 4-, 5-, 6-, and 7-factor models — the 6-factor structure was selected for the clearest construct boundaries and best real-world prediction</span>
                   </li>
                   <li className="flex items-start gap-3">
                     <span className="mt-1.5 h-2 w-2 rounded-full bg-primary flex-shrink-0" />
-                    <span>Every facet loads uniquely — no redundancy, each backed by published peer-reviewed research</span>
+                    <span>Every facet loads uniquely in factor analysis — no redundancy, each grounded in peer-reviewed research</span>
                   </li>
                   <li className="flex items-start gap-3">
                     <span className="mt-1.5 h-2 w-2 rounded-full bg-primary flex-shrink-0" />
-                    <span>Covers cognitive, motivational, emotional, interpersonal, and leadership strengths — not just "character virtues"</span>
+                    <span>Anti-faking measures planned: forced-choice items and response-time checks</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="mt-1.5 h-2 w-2 rounded-full bg-primary flex-shrink-0" />
+                    <span>All scoring algorithms, factor loadings, and IRT parameters will be public and reproducible</span>
                   </li>
                 </ul>
                 <p className="text-sm font-medium text-foreground pt-2 border-t border-border">
-                  Not too broad, not too narrow — 36 facets that actually predict what matters.
+                  Built on peer-reviewed methods — and you can verify every step.
                 </p>
               </CardContent>
             </Card>
