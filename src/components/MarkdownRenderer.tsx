@@ -139,7 +139,10 @@ const MarkdownRenderer = ({ content, frontmatter }: MarkdownRendererProps) => {
         
         const content = numberedMatch[2];
         const processedContent = content
-          .replace(/\[([^\]]*)\]\(([^\)]*)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">$1</a>')
+          .replace(/\[([^\]]*)\]\(([^\)]*)\)/g, (_, text, url) => {
+            const resolvedUrl = url.endsWith('.md') && !url.startsWith('http') ? `https://github.com/open-strengths/docs/blob/main/${url}` : url;
+            return `<a href="${resolvedUrl}" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">${text}</a>`;
+          })
           .replace(/\*\*(.*?)\*\*/g, '<strong class="font-semibold">$1</strong>')
           .replace(/\*(.*?)\*/g, '<em class="italic">$1</em>')
           .replace(/`([^`]*)`/g, '<code class="bg-gray-100 px-2 py-1 rounded text-sm font-mono">$1</code>');
@@ -150,7 +153,10 @@ const MarkdownRenderer = ({ content, frontmatter }: MarkdownRendererProps) => {
         // This is a sub-item for the current numbered item
         const content = subItemMatch[1];
         const processedContent = content
-          .replace(/\[([^\]]*)\]\(([^\)]*)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">$1</a>')
+          .replace(/\[([^\]]*)\]\(([^\)]*)\)/g, (_, text, url) => {
+            const resolvedUrl = url.endsWith('.md') && !url.startsWith('http') ? `https://github.com/open-strengths/docs/blob/main/${url}` : url;
+            return `<a href="${resolvedUrl}" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">${text}</a>`;
+          })
           .replace(/\*\*(.*?)\*\*/g, '<strong class="font-semibold">$1</strong>')
           .replace(/\*(.*?)\*/g, '<em class="italic">$1</em>')
           .replace(/`([^`]*)`/g, '<code class="bg-gray-100 px-2 py-1 rounded text-sm font-mono">$1</code>');
@@ -229,7 +235,10 @@ const MarkdownRenderer = ({ content, frontmatter }: MarkdownRendererProps) => {
       .replace(/\*\*(.*?)\*\*/gim, '<strong class="font-semibold">$1</strong>')
       .replace(/\*(.*?)\*/gim, '<em class="italic">$1</em>')
       // Links
-      .replace(/\[([^\]]*)\]\(([^\)]*)\)/gim, '<a href="$2" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">$1</a>')
+      .replace(/\[([^\]]*)\]\(([^\)]*)\)/gim, (_, text, url) => {
+        const resolvedUrl = url.endsWith('.md') && !url.startsWith('http') ? `https://github.com/open-strengths/docs/blob/main/${url}` : url;
+        return `<a href="${resolvedUrl}" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">${text}</a>`;
+      })
       // Code
       .replace(/`([^`]*)`/gim, '<code class="bg-gray-100 px-2 py-1 rounded text-sm font-mono">$1</code>')
       // Line breaks - convert double line breaks to paragraph breaks
