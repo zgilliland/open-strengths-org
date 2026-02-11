@@ -1,12 +1,10 @@
 
 
-# Remove Buttons from Get Involved Partner Cards
+# Make Partner Card Titles Consistent Height
 
-A small content change in `src/components/GetInvolved.tsx`:
+The issue: "Academic Organizations" wraps to two lines while the other three titles fit on one line, creating visual misalignment across the cards.
 
-- Remove the `Button` elements ("Join as partner", "Run a pilot", "Get involved", "Fork the code") from each of the four partner type cards
-- Remove the `cta` property from the `partnerTypes` data array since it will no longer be used
-- Keep everything else (emoji avatars, titles, descriptions, hover effects)
+**Fix:** Add a minimum height to the `CardTitle` element in `GetInvolved.tsx` so all titles occupy the same vertical space regardless of whether they wrap. This keeps all card content aligned.
 
-Single file to modify: `src/components/GetInvolved.tsx`
+**File:** `src/components/GetInvolved.tsx` -- add a `min-h-[3.5rem] flex items-center justify-center` class to the `CardTitle` so all titles reserve two lines of space and center vertically within that space.
 
