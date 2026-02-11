@@ -12,10 +12,6 @@ const FAQ = () => {
       answer: 'AI plays a bounded role: it helps generate and verify assessment items, but it cannot characterize who you are. Humans interpret — AI measures. This is a deliberate design choice. Current AI companion apps validate what users want to hear 50% more than a human would. OpenStrengths provides the scientific foundation that AI-driven self-understanding currently lacks.'
     },
     {
-      question: 'Can I use it commercially?',
-      answer: 'Yes! OpenStrengths is released under the Apache-2.0 license, which allows both commercial and non-commercial use. You can integrate it into your products, modify it, and even sell services based on it, as long as you comply with the license terms.'
-    },
-    {
       question: 'How do you prevent faking?',
       answer: 'We use forced-choice item formats where respondents must choose between equally attractive options. This makes it much harder to game the system since there is no obvious "correct" answer. Additionally, our IRT-based scoring can detect inconsistent response patterns.'
     },
