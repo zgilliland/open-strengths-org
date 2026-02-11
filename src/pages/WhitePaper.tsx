@@ -27,9 +27,14 @@ const WhitePaper = () => {
       
       try {
         console.log('Fetching whitepaper from GitHub repository...');
-        // Add cache busting with timestamp to force fresh fetch
-        const cacheBuster = new Date().getTime();
-        const response = await fetch(`https://raw.githubusercontent.com/open-strengths/docs/main/manifesto.md?cb=${cacheBuster}`);
+        // Use GitHub API to avoid raw.githubusercontent.com CDN caching
+        const response = await fetch('https://api.github.com/repos/open-strengths/docs/contents/manifesto.md', {
+          headers: {
+            'Accept': 'application/vnd.github.v3.raw',
+            'If-None-Match': '', // Force bypass cache
+          },
+          cache: 'no-store',
+        });
         
         if (!response.ok) {
           throw new Error(`GitHub fetch failed: ${response.status} ${response.statusText}`);
