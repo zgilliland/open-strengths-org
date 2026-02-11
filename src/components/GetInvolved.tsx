@@ -38,22 +38,20 @@ const GetInvolved = () => {
     <section id="get-involved" className="py-20 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-8">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">Get Involved</h2>
-          <p className="text-xl text-gray-600 mb-6">
+          <h2 className="text-4xl font-bold text-foreground mb-4">Get Involved</h2>
+          <p className="text-xl text-muted-foreground mb-2">
             OpenStrengths is a nonprofit, open-source project.
           </p>
-          <div className="bg-white rounded-xl p-6 border border-gray-200 max-w-2xl mx-auto mb-12">
-            <p className="text-lg text-gray-700">
-              Our remaining budget to complete validation and launch is{' '}
-              <span className="font-bold text-primary text-2xl">$2.2 million</span>.
-            </p>
-            <p className="text-sm text-muted-foreground mt-2">
-              Contact us at{' '}
-              <a href="mailto:team@openstrengths.org" className="text-primary hover:text-primary/80 underline">
-                team@openstrengths.org
-              </a>
-            </p>
-          </div>
+          <p className="text-lg text-muted-foreground mb-2">
+            Our remaining budget to complete validation and launch is{' '}
+            <span className="font-bold text-primary text-2xl">$2.2 million</span>.
+          </p>
+          <p className="text-sm text-muted-foreground mb-12">
+            Reach out at{' '}
+            <a href="mailto:team@openstrengths.org" className="text-primary hover:text-primary/80 underline">
+              team@openstrengths.org
+            </a>
+          </p>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
